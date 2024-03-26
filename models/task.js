@@ -23,9 +23,14 @@ Task.init(
             allowNull: false,
             defaultValue: DataTypes.NOW,
         },
-        needed_funding: {
-            type: DataTypes.FLOAT,
+        due_date: {
+            type: DataTypes.DATE,
             allowNull: false,
+        },
+        priority: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0, 
         },
         user_id: {
             type: DataTypes.INTEGER,
