@@ -1,52 +1,40 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataType } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Task extends Model { }
+class tasks extends Model { }
 
-Task.init(
+tasks.init(
     {
         id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
+            type: DataType.INTEGER,
             primaryKey: true,
-            autoIncrement: true,
+            autoIncrement: true
         },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
+        title: {
+            type: DataType.STRING
         },
         description: {
-            type: DataTypes.STRING,
+            type: DataType.STRING
         },
-        date_created: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW,
-        },
-        due_date: {
-            type: DataTypes.DATE,
-            allowNull: false,
-        },
-        priority: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            defaultValue: 0, 
+        status: {
+            type: DataType.STRING,
+            defaultValue: 'pending'
         },
         user_id: {
-            type: DataTypes.INTEGER,
+            type: DataType.INTEGER,
             references: {
-                model: 'user',
-                key: 'id',
-            },
+                model: 'users',
+                key: 'id'
+            }
         },
     },
     {
         sequelize,
         timestamps: false,
-        freezeTableName: true,
+        freezeTablename: true,
         underscored: true,
         modelName: 'task',
     }
 );
 
-module.exports = Task;
+module.exports = tasks;
