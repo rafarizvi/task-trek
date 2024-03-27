@@ -1,7 +1,7 @@
 
-const users = require('./user'); 
-const task = require('./task');
-const profile = require('./profile');
+const User = require('./User')
+const Task = require('./Task');
+const Profile = require('./Profile');
 
 User.hasOne(Profile, {
   foreignKey: 'userId', // Asegúrate de definir esta clave foránea en tu modelo Profile
@@ -25,4 +25,4 @@ Task.belongsTo(User, {
 
 
 
-module .exports = { users, Profile, tasks };
+module.exports = { User, Profile, Task };
