@@ -1,7 +1,16 @@
-const router = require('express').Router(); 
+const router = require('express').Router();
 const userRoutes = require('./userRoutes');
-const taskRoutes = require('./taskRoutes')
+const pendingTasks = require('./pendingTaskRoutes');
+const inprogressTasks = require('./inprogressTaskRoutes');
+const completedTasks = require('./completedTasksRoutes');
+const newTask = require('./newTask');
+const viewTask = require('./viewTask');
 
-router.use('/user', userRoutes);
-router.use('/tasks', taskRoutes)
+router.use('/users', userRoutes);
+router.use('/pending-tasks', pendingTasks);
+router.use('/inprogress', inprogressTasks);
+router.use('/completed', completedTasks);
+router.use('/new-task', newTask);
+router.use('/view-task', viewTask);
+
 module.exports = router;
