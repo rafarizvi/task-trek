@@ -1,7 +1,7 @@
 
-const User = require('./User')
-const Task = require('./Task');
-const Profile = require('./Profile');
+const User = require('./user')
+const Task = require('./task');
+const Profile = require('./profile');
 
 User.hasOne(Profile, {
   foreignKey: 'userId', // Asegúrate de definir esta clave foránea en tu modelo Profile
