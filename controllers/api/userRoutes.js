@@ -2,7 +2,7 @@ const { User } = require('../../models');
 const router = require('express').Router();
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oidc');
-const db = require(('../../db'))
+const db = require('../../db')
 
 
 
