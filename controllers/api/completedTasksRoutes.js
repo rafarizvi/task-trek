@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { CompletedTask } = require("../../models");
+const withAuth = require("../../utils/auth");
 
 // Post route for adding a new completed tasks
-router.post('/', async (req, res) => {
+router.post('/',withAuth,withAuth, async (req, res) => {
     try {
       const newCompletedTask = await CompletedTask.create({
         ...req.body,
@@ -37,7 +38,7 @@ router.post('/', async (req, res) => {
 //   });
 
 // Get route for displaying all completed tasks.
-  router.get('/', async (req, res) => {
+  router.get('/', withAuth, async (req, res) => {
     try {
       const completedTask = await CompletedTask.findAll({
         where: { user_id: req.session.user_id },
@@ -50,7 +51,7 @@ router.post('/', async (req, res) => {
   });
 
 // Delete route for removing completed tasks.
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
     try {
       const completedTaskData = await CompletedTask.destroy({
         where: {

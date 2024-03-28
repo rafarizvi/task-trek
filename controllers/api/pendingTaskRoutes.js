@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { PendingTask } = require("../../models");
+const withAuth = require("../../utils/auth");
 
 // Post route for adding a new pending tasks
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   try {
     const newPendingTask = await PendingTask.create({
       ...req.body,
@@ -16,7 +17,7 @@ router.post('/', async (req, res) => {
 });
 
 // Get route for displaying all pending tasks.
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
     const pendingTask = await PendingTask.findAll({
       where: { user_id: req.session.user_id },
@@ -51,7 +52,7 @@ router.get('/', async (req, res) => {
 // });
 
 // Delete route for removing pending tasks.
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
   try {
     const pendingTaskData = await PendingTask.destroy({
       where: {
