@@ -1,7 +1,7 @@
 
-const User = require('./user'); 
-const Profile = require('./profile');
-const Task = require('./task');
+const User = require('./User'); 
+const Profile = require('./Profile');
+const Task = require('./Task');
 const PendingTask = require('./PendingTask');
 const InprogressTask = require('./InprogressTask');
 const CompletedTask = require('./CompletedTask');
