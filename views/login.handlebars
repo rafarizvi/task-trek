@@ -1,4 +1,9 @@
-<div class="container mt-4">
+
+<body>
+    {{!-- Navigation links --}}
+    <nav>
+        <h4>Log in</h4>
+        <div class="container mt-4">
     <div class="card" style="width: 18rem;">
         <div class="card-header">Log In</div>
         <div class="card-body">
@@ -18,5 +23,20 @@
         </div>
     </div>
 </div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+        </ul>
+                    <h1>Or sign in Using </h1>
+        <ul>
+            <a class="button facebook" href="/login/federated/facebook">Sign in with Facebook</a>
+            <a class="button google" href="/login/federated/google">Sign in with Google</a>
+
+        </ul>
+    </nav>
+    
+</body>
+
 <script src="../public/js/login.js"></script>
 
