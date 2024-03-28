@@ -1,32 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management</title>
-</head>
-<body>
-    <h1>Task Management</h1>
-    
-    <div id="taskList">
-        
-    </div>
-    
-    <script id="task-template" type="text/x-handlebars-template">
+
+{{!-- 
         {{#each tasks}}
         <div class="task">
             <p>{{this.title}}</p>
             <p>Description: {{this.description}}</p>
             <p>Status: {{this.status}}</p>
             <select class="status-select">
-                <option value="pending"{{#if (eq this.status "pending")}} selected{{/if}}>Pending</option>
-                <option value="completed"{{#if (eq this.status "completed")}} selected{{/if}}>Completed</option>
-                <option value="inProgress"{{#if (eq this.status "inProgress")}} selected{{/if}}>In Progress</option>
+                <option value="pending"{{#if (this.status "pending")}} selected{{/if}}>Pending</option>
+                <option value="completed"{{#if (this.status "completed")}} selected{{/if}}>Completed</option>
+                <option value="inProgress"{{#if (this.status "inProgress")}} selected{{/if}}>In Progress</option>
             </select>
-            <button class="update-status">Update Status</button>
+            <button class"update-status">Update Status</button>
         </div>
-        {{/each}}a
-    </script>
-    <script src="../public/js/tasks.js"></script>
-</body>
-</html>
+        {{/each}}
+
+ --}}
