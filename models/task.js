@@ -18,7 +18,10 @@ Task.init(
         },
         status: {
             type: DataTypes.STRING,
-            defaultValue: 'pending'
+            defaultValue: 'pending',
+            validate: {
+                isIn: [['pending', 'completed', 'inProgress']]
+            }
         },
         user_id: {
             type: DataTypes.INTEGER,

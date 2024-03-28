@@ -6,12 +6,14 @@ router.get("/", withAuth, async (req, res) => {
     try {
         const tasks = await Task.findAll({
             where: { user_id: req.session.user_id },
+            
         });
         res.status(200).json(tasks);
     } catch (err) {
         res.status(500).json(err);
     }
 });
+
 
 router.post("/", withAuth, async (req, res) => {
     try {

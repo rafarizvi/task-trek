@@ -5,7 +5,9 @@ const inprogressTasks = require('./inprogressTaskRoutes');
 const completedTasks = require('./completedTasksRoutes');
 const newTask = require('./newTask');
 const viewTask = require('./viewTask');
+const allTask = require('./taskRoutes')
 
+router.use('/tasks' , allTask)
 router.use('/users', userRoutes);
 router.use('/pending-tasks', pendingTasks);
 router.use('/inprogress', inprogressTasks);
