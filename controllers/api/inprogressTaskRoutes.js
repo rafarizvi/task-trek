@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { InprogressTask } = require("../../models");
 
 // Post route for adding a new in progress tasks
 router.post('/', async (req, res) => {
@@ -14,26 +15,40 @@ router.post('/', async (req, res) => {
     }
   });
 
-  // Get route for displaying in progress tasks.
-  router.get('/:id', async (req, res) => {
+  // // Get route for displaying in progress tasks.
+  // router.get('/:id', async (req, res) => {
+  //   try {
+  //     const inprogressTask = await InprogressTask.findOne({
+  //       where: {
+  //         id: req.params.id,
+  //         user_id: req.session.user_id,
+  //       },
+  //     });
+  
+  //     if (!inprogressTask) {
+  //       res.status(404).json({ message: 'No in progress tasks found with this id!' });
+  //       return;
+  //     }
+  
+  //     res.status(200).json(inprogressTask);
+  //   } catch (err) {
+  //     res.status(500).json(err);
+  //   }
+  // });
+
+  // Get route for displaying all in progress tasks.
+  router.get('/', async (req, res) => {
     try {
-      const inprogressTask = await InprogressTask.findOne({
-        where: {
-          id: req.params.id,
-          user_id: req.session.user_id,
-        },
-      });
+      const inprogressTask = await InprogressTask.findAll({
+        where: { user_id: req.session.user_id },
+    });
+      return res.status(200).json(inprogressTask);
   
-      if (!inprogressTask) {
-        res.status(404).json({ message: 'No in progress tasks found with this id!' });
-        return;
-      }
-  
-      res.status(200).json(inprogressTask);
     } catch (err) {
       res.status(500).json(err);
     }
   });
+  
 
   // Delete route for removing in progress tasks.
   router.delete('/:id', async (req, res) => {

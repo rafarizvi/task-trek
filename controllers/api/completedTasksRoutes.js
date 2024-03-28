@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { CompletedTask } = require("../../models");
 
 // Post route for adding a new completed tasks
 router.post('/', async (req, res) => {
@@ -14,22 +15,35 @@ router.post('/', async (req, res) => {
     }
   });
 
-// Get route for displaying completed tasks.
-router.get('/:id', async (req, res) => {
+// // Get route for displaying completed tasks.
+// router.get('/:id', async (req, res) => {
+//     try {
+//       const completedTask = await CompletedTask.findOne({
+//         where: {
+//           id: req.params.id,
+//           user_id: req.session.user_id,
+//         },
+//       });
+  
+//       if (!completedTask) {
+//         res.status(404).json({ message: 'No completed tasks found with this id!' });
+//         return;
+//       }
+  
+//       res.status(200).json(completedTask);
+//     } catch (err) {
+//       res.status(500).json(err);
+//     }
+//   });
+
+// Get route for displaying all completed tasks.
+  router.get('/', async (req, res) => {
     try {
-      const completedTask = await CompletedTask.findOne({
-        where: {
-          id: req.params.id,
-          user_id: req.session.user_id,
-        },
-      });
+      const completedTask = await CompletedTask.findAll({
+        where: { user_id: req.session.user_id },
+    });
+      return res.status(200).json(completedTask);
   
-      if (!completedTask) {
-        res.status(404).json({ message: 'No completed tasks found with this id!' });
-        return;
-      }
-  
-      res.status(200).json(completedTask);
     } catch (err) {
       res.status(500).json(err);
     }
