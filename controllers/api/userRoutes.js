@@ -61,6 +61,7 @@ passport.deserializeUser(function (user, cb) {
 
 router.get('/login', function (req, res, next) {
   res.render('login');
+
 });
 
 router.get('/login/federated/google', passport.authenticate('google'));
