@@ -107,7 +107,7 @@ router.post('/login', async (req, res) => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
 
-      res.json({ user: userData, message: 'You are now logged in!' });
+      res.json({ User: userData, message: 'You are now logged in!' });
     });
 
   } catch (err) {
@@ -117,8 +117,10 @@ router.post('/login', async (req, res) => {
 
 router.post('/logout', (req, res) => {
   req.session.destroy(() => {
-    res.redirect('/');
-  })
+    res.clearCookie('session_id'); 
+    res.status(204).send(); 
+  });
 });
 
 module.exports = router;
+

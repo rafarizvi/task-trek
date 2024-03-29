@@ -12,11 +12,13 @@ Task.init(
         },
 
         title: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false, 
         },
 
         description: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false, 
         },
 
         start_date: {
@@ -49,7 +51,7 @@ Task.init(
         user_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'users',
+                model: 'user',
                 key: 'id'
             }
         },
@@ -57,7 +59,7 @@ Task.init(
     {
         sequelize,
         timestamps: false,
-        freezeTablename: true,
+        freezeTableName: true,
         underscored: true,
         modelName: 'task',
     }

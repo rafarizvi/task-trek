@@ -1,25 +1,25 @@
 <div class="container mt-4">
-        <div class="card" style="width: 18rem;">            
-            <div class="card-header">Register</div>    
-            <div class="card-body">
-                <form id="registration-form" action="/users/login" method="POST">
-                    <div class="mb-3">
-                        <label for="username-reg" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username-reg" name="username">                        
-                    </div>
-                    <div class="mb-3">
-                        <label for="email-reg" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="email-reg" name="email">                        
-                    </div>
-                    <div class="mb-3">
-                        <label for="password-reg" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password-reg" name="password">
-                    </div>
-                  
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">Register</div>
+        <div class="card-body">
+            <form action="/api/users/login" method="POST">
+                <div class="mb-3">
+                    <label for="username-reg" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username-reg" name="username">
+                </div>
+                <div class="mb-3">
+                    <label for="email-reg" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email-reg" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="password-reg" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password-reg" name="password">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
     </div>
+</div>
 
 <script src="../public/js/register.js"></script>

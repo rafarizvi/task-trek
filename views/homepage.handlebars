@@ -1,4 +1,5 @@
-<h1> My Tasks</h1>
+
+{{#if logged_in}} <h1> My Tasks</h1>
 <div class="d-grid gap-2">
   <button class="btn btn-primary" type="button">Add new task </button>
 </div>
@@ -12,8 +13,12 @@
     <h1>New Task</h1>
     <ul>
         <li>Task Name:{{task.title}} </li>
+<<<<<<< HEAD
         <li>Start Date:{{task.start_date}}</li>
         <li>Due Date:{{task.ue_date}}</li>
+=======
+        <li>status:{{task.status}}</li>
+>>>>>>> 03e9d4d9ebbe8502f8c390277b91c8efa9647755
         <li>Description:{{task.description}} </li>
     </ul>
 </div>
@@ -29,4 +34,10 @@
 <div>
     <h1>Completed: {{complete}}</h1>
 </div>
+{{else}}
+<h1>Please log in to view your tasks. (introdution)
+    
+</h1>
+{{/if}}
+
 

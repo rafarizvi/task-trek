@@ -1,25 +1,13 @@
-
-const User = require('./User'); 
-const Profile = require('./Profile');
+const User = require('./User');
 const Task = require('./Task');
 
-User.hasOne(Profile, {
-  foreignKey: 'userId', // Asegúrate de definir esta clave foránea en tu modelo Profile
-  onDelete: 'CASCADE'
-});
-
-// Un perfil pertenece a un usuario
-Profile.belongsTo(User, {
-  foreignKey: 'userId'
-});
-
 User.hasMany(Task, {
-  foreignKey: 'userId',
-  onDelete: 'CASCADE',
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE',
 });
 
 Task.belongsTo(User, {
-  foreignKey: 'userId',
+    foreignKey: 'user_id',
 });
 
-module .exports = { User, Profile, Task };
+module.exports = { User, Task };

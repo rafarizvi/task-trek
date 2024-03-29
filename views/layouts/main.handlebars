@@ -18,12 +18,12 @@
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
       <h1>
-        <a href="/">Name off app!</a>
+        <a href="/">Name off the app!</a>
       </h1>
       <nav>
         {{#if logged_in}}
-        <a href="/profile">profile</a> |
-        <button class="no-button" id="logout">logout</button>
+        <button id="logout">logout</button>
+        <p>{{user.username}}</p>
         {{else}}
         <a href="/login">login</a>
         {{/if}}
