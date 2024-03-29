@@ -4,11 +4,15 @@ const withAuth = require("../../utils/auth");
 
 router.get("/", withAuth, async (req, res) => {
     try {
-        const tasks = await Task.findAll({
+        const tasksData = await Task.findAll({
             where: { user_id: req.session.user_id },
-            
+
         });
-        res.status(200).json(tasks);
+
+
+        const tasks = tasksData.map((task) => task.get({ plain: true }));
+
+        res.render('homepage', { tasks });
     } catch (err) {
         res.status(500).json(err);
     }
