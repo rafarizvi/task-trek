@@ -11,10 +11,10 @@
 <div>
     <h1>New Task</h1>
     <ul>
-        <li>Task Name:{{title}} </li>
-        <li>Start Date:{{start_date}}</li>
-        <li>Due Date:{{due_date}}</li>
-        <li>Description:{{description}} </li>
+        <li>Task Name:{{task.title}} </li>
+        <li>Start Date:{{task.start_date}}</li>
+        <li>Due Date:{{task.ue_date}}</li>
+        <li>Description:{{task.description}} </li>
     </ul>
 </div>
 
@@ -30,15 +30,3 @@
     <h1>Completed: {{complete}}</h1>
 </div>
 
-
-{{#each users as |user| }}
-<div class="row align-center mb-5">
-  <div class="col-md-6">
-    <!-- Render user-specific data with Handlebars.js expressions -->
-    <h2>{{{get_emoji}}} {{user.name}}</h2>
-  </div>
-  <div class="col-md-6">
-    <h3><a href="mailto:{{user.email}}">{{user.email}}</a></h3>
-  </div>
-</div>
-{{/each}}
