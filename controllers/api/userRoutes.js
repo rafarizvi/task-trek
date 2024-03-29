@@ -2,13 +2,13 @@ const { User } = require('../../models');
 const router = require('express').Router();
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oidc');
-// const db = require('../../db')
+const registerRoute = require('./registerRoute');
 
-
+router.post('/login', registerRoute.registerUser);
 
 passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_CLIENT_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  clientID: process.env['GOOGLE_CLIENT_ID'],
+  clientSecret: process.env['GOOGLE_CLIENT_SECRET'],
   callbackURL: '/oauth2/redirect/google',
   scope: ['profile']
 }, function verify(issuer, profile, cb) {

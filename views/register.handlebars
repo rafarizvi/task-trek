@@ -2,10 +2,10 @@
         <div class="card" style="width: 18rem;">            
             <div class="card-header">Register</div>    
             <div class="card-body">
-                <form action="/auth/register" method="POST">
+                <form id="registration-form" action="/users/login" method="POST">
                     <div class="mb-3">
-                        <label for="name-reg" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name-reg" name="name">                        
+                        <label for="username-reg" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username-reg" name="username">                        
                     </div>
                     <div class="mb-3">
                         <label for="email-reg" class="form-label">Email</label>
@@ -15,15 +15,11 @@
                         <label for="password-reg" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password-reg" name="password">
                     </div>
-                    <div class="mb-3">
-                        <label for="password-conf-reg" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="password-conf-reg" name="password-confirm">
-                    </div>
-
+                  
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
     </div>
 
-<script src="../public/js/logout.js"></script>
+<script src="../public/js/register.js"></script>
