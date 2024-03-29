@@ -10,12 +10,35 @@ Task.init(
             primaryKey: true,
             autoIncrement: true
         },
+
         title: {
             type: DataTypes.STRING
         },
+
         description: {
             type: DataTypes.STRING
         },
+
+        start_date: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+          },
+
+        due_date: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+        },
+
+        priority: {
+            type: DataTypes.STRING,
+            defaultValue: 'high',
+            validate: {
+                isIn: [['high', 'medium', 'low']]
+            }
+        },
+        
         status: {
             type: DataTypes.STRING,
             defaultValue: 'pending',
