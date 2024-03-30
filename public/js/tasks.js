@@ -51,8 +51,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         event.preventDefault();
 
         const formData = new FormData(addTaskForm);
-        const title = formData.get('title');
-        const description = formData.get('description');
+        // const title = formData.get('title');
+        // const description = formData.get('description');
+        const taskData = {};
+        formData.forEach((value, key) => {
+            taskData[key] = value;
+        });
 
         try {
             const response = await fetch('/api/tasks', {
@@ -60,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ title, description })
+                body: JSON.stringify(taskData)
             });
 
             if (!response.ok) {

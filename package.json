@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "bulma": "^1.0.0",
     "connect-session-sequelize": "^7.1.7",
     "connect-sqlite3": "^0.9.15",
     "dotenv": "^16.4.5",
