@@ -4,42 +4,69 @@ const withAuth = require('../utils/auth');
 
 
 
+// router.get('/', async (req, res) => {
+//   try {
+    
+//     const taskData = await Task.findAll({
+//       include: [
+//         {
+//           model: User,
+//           attributes: ['username'],
+//         },
+//       ],
+//     });
+
+
+//     const tasks = taskData.map((task) => task.get({ plain: true }));
+
+//     res.render('homepage', { 
+//       tasks, 
+//       logged_in: req.session.logged_in 
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+
+
 router.get('/', withAuth, async (req, res) => {
   try {
-    const tasks = await Task.findAll({
-      where: { user_id: req.session.user_id },
-      include: [{ model: User, attributes: ['username'] }],
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Task }],
     });
-    res.render('homepage', { tasks, logged_in: req.session.logged_in });
+
+    const user = userData.get({ plain: true });
+
+    res.render('homepage', {
+      ...user,
+      logged_in: true
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/:id', withAuth, async (req, res) => {
-  try {
-    const task = await Task.findByPk(req.params.id, {
-      include: [{ model: User, attributes: ['username'] }],
-    });
-    res.render('homepage', { ...task.get({ plain: true }), logged_in: req.session.logged_in });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+
 
 router.get('/login', (req, res) => {
+ 
   if (req.session.logged_in) {
     res.redirect('/');
-  } else {
-    res.render('login');
+    return;
   }
+
+  res.render('login');
 });
 
 router.get('/register', (req, res) => {
+  
   if (req.session.logged_in) {
     res.redirect('/');
-  } else {
-    res.render('register');
+    return;
   }
+
+  res.render('register');
 });
 module.exports = router;
