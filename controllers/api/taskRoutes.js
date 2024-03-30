@@ -2,24 +2,39 @@ const router = require("express").Router();
 const { Task } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-router.get("/", withAuth, async (req, res) => {
+router.get('/tasks', async (req, res) => {
     try {
-        const tasksData = await Task.findAll({
-            where: { user_id: req.session.user_id },
-
-        });
-
-
-        const tasks = tasksData.map((task) => task.get({ plain: true }));
-
-        res.render('homepage', { tasks });
+      const taskData = await Task.findAll({
+        include: [{ model: User, attributes: ['username'] }],
+      });
+  
+      const tasks = taskData.map((task) => task.get({ plain: true }));
+  
+      res.render('task', { tasks, logged_in: req.session.logged_in });
     } catch (err) {
-        res.status(500).json(err);
+      res.status(500).json(err);
     }
-});
+  });
+  
+
+  router.get('/', withAuth, async (req, res) => {
+    try {
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: { exclude: ['password'] },
+        include: [{ model: Task }],
+      });
+  
+      const user = userData.get({ plain: true });
+  
+      res.render('homepage', { ...user, logged_in: true });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
 
-router.post("/", withAuth, async (req, res) => {
+
+router.post('/', withAuth, async (req, res) => {
     try {
         const newTask = await Task.create({
             ...req.body,
@@ -59,7 +74,7 @@ router.delete("/:id", withAuth, async (req, res) => {
         });
 
         if (!taskData) {
-            res.status(404).json({ message: "No project found with this id!" });
+            res.status(404).json({ message: "No task found with this id!" });
             return;
         }
 
