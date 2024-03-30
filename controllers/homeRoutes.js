@@ -16,16 +16,16 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-// router.get('/tasks/:id', withAuth, async (req, res) => {
-//   try {
-//     const task = await Task.findByPk(req.params.id, {
-//       include: [{ model: User, attributes: ['username'] }],
-//     });
-//     res.render('tasks', { ...task.get({ plain: true }), logged_in: req.session.logged_in });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.get('/:id', withAuth, async (req, res) => {
+  try {
+    const task = await Task.findByPk(req.params.id, {
+      include: [{ model: User, attributes: ['username'] }],
+    });
+    res.render('homepage', { ...task.get({ plain: true }), logged_in: req.session.logged_in });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
