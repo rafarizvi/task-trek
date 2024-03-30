@@ -1,44 +1,80 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"> 
-  <title>Task manager</title>
-
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="/public/css/style.css"> 
 </head>
 
 <body>
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <a href="/">Task manager!!</a>
-      </h1>
-      <nav>
-        {{#if logged_in}}
-        <button id="logout">logout</button>
-        <p>{{email}}</p>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
-      </nav>
-    </header>
-    
-    <main class="container container-fluid mt-5">
-      {{{ body }}}
-    </main>
-    <footer>
-      
-    </footer>
-  </div>
+  <section class="hero is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <nav class="navbar">
+          <div class="navbar-brand">
+            <h1 class="navbar-item">
+              <a href="/">Task Manager</a>
+            </h1>
+            <span class="navbar-burger" id="nav-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </div>
+          <div class="navbar-menu" id="navbar-menu">
+            <div class="navbar-end">
+              <div class="navbar-item">
+                {{#if logged_in}}
+                <p class="buttons">
+                  <button id="logout" class="button is-light">Logout</button>
+                </p>
+                <p>{{email}}</p>
+                {{else}}
+                <a href="/login" class="button is-light">Login</a>
+                {{/if}}
+              </div>
+              <div class="navbar-item">
+                <!-- Dark mode toggle button -->
+                <button id="dark-mode-toggle" class="button is-light">Dark Mode</button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </section>
 
-  {{#if logged_in}}
-  <script src="/public/js/logout.js"></script>
-  {{/if}}
+  <main class="section">
+    <div class="container">
+      {{{ body }}}
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        Task Manager &copy; 2024. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script src="/js/logout.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Function to toggle dark mode
+      const toggleDarkMode = () => {
+        document.body.classList.toggle('dark-mode');
+      };
+
+      // Dark mode toggle button event listener
+      const darkModeToggleBtn = document.getElementById('dark-mode-toggle');
+      darkModeToggleBtn.addEventListener('click', toggleDarkMode);
+    });
+  </script>
 </body>
 
 </html>
