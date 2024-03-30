@@ -111,12 +111,17 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.post('/logout', (req, res) => {
-  req.session.destroy(() => {
-    res.clearCookie('session_id'); 
-    res.status(204).send(); 
+// server-side route definition
+router.delete('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: 'Failed to log out' });
+    }
+    res.clearCookie('connect.sid'); // Adjust cookie name if needed
+    res.status(204).json({ message: 'Logged out successfully' });
   });
 });
 
-module.exports = router;
 
+
+module.exports = router;

@@ -39,6 +39,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
