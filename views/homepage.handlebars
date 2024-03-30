@@ -30,18 +30,16 @@
  
 
 
-
-{{#each tasks}}
-<div class="box mt-3">
-  <h2 class="title is-5">{{this.title}}</h2>
-  <p>Status: {{this.status}}</p>
-  <p>Description: {{this.description}}</p>
+<div>
+    <h1>New Task</h1>
+    <ul>
+        <li>Task Name:{{title}} </li>
+        <li>status:{{status}}</li>
+        <li>Description:{{description}} </li>
+    </ul>
 </div>
-{{/each}}
 
 
-
-</div>
 
 {{else}}
 <h1>Please log in to view your tasks.</h1>

@@ -13,19 +13,19 @@ Task.init(
 
         title: {
             type: DataTypes.STRING,
-            allowNull: false, 
+            allowNull: false,
         },
 
         description: {
             type: DataTypes.STRING,
-            allowNull: false, 
+            allowNull: false,
         },
 
         start_date: {
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: DataTypes.NOW,
-          },
+        },
 
         due_date: {
             type: DataTypes.DATE,
@@ -40,7 +40,7 @@ Task.init(
                 isIn: [['high', 'medium', 'low']]
             }
         },
-        
+
         status: {
             type: DataTypes.STRING,
             defaultValue: 'pending',
@@ -51,17 +51,17 @@ Task.init(
         user_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'user',
+                model: 'User',
                 key: 'id'
             }
-        },
+        },  
     },
     {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'task',
+        modelName: 'Task',
     }
 );
 

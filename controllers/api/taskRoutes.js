@@ -74,7 +74,7 @@ router.delete("/:id", withAuth, async (req, res) => {
         });
 
         if (!taskData) {
-            res.status(404).json({ message: "No project found with this id!" });
+            res.status(404).json({ message: "No task found with this id!" });
             return;
         }
 
