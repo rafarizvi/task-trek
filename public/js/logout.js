@@ -15,6 +15,7 @@ const logout = async () => {
       // Handle error
       alert(response.statusText);
     }
+    console.log(response)
   } catch (error) {
     console.error('Error logging out:', error);
   }
