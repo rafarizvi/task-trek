@@ -2,39 +2,20 @@ const router = require("express").Router();
 const { Task } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-router.get('/tasks', async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
     try {
-      const taskData = await Task.findAll({
-        include: [{ model: User, attributes: ['username'] }],
-      });
-  
-      const tasks = taskData.map((task) => task.get({ plain: true }));
-  
-      res.render('task', { tasks, logged_in: req.session.logged_in });
+        const tasks = await Task.findAll({
+            where: { user_id: req.session.user_id },
+            
+        });
+        res.status(200).json(tasks);
     } catch (err) {
-      res.status(500).json(err);
+        res.status(500).json(err);
     }
-  });
-  
-
-  router.get('/', withAuth, async (req, res) => {
-    try {
-      const userData = await User.findByPk(req.session.user_id, {
-        attributes: { exclude: ['password'] },
-        include: [{ model: Task }],
-      });
-  
-      const user = userData.get({ plain: true });
-  
-      res.render('homepage', { ...user, logged_in: true });
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+});
 
 
-
-router.post('/', withAuth, async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
     try {
         const newTask = await Task.create({
             ...req.body,
