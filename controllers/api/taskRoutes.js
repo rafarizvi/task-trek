@@ -1,47 +1,40 @@
 const router = require("express").Router();
 const { Task } = require("../../models");
 const withAuth = require("../../utils/auth");
+const { appendTaskToFile } = require("../../utils/helpers");
 
-// router.get("/tasks", withAuth, async (req, res) => {
-//     try {
-//         const tasks = await Task.findByPk({
-//             where: { user_id: req.session.user_id },
-            
-//         });
-//         res.status(200).json(tasks);
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// });
-
-
-router.post("/", withAuth, async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
-        const newTask = await Task.create({
-            ...req.body,
-            user_id: req.session.user_id,
+        const tasks = await Task.findAll({
+            where: { user_id: req.session.user_id },
         });
-        res.status(201).json(newTask);
+        const tasksPlain = tasks.map(task => task.get({ plain: true }));
+
+        res.render('tasks', {
+            tasks: tasksPlain,
+            logged_in: req.session.logged_in 
+        });
     } catch (err) {
-        res.status(400).json(err);
+        console.error(err);
+        res.status(500).render('error', { error: err });
     }
 });
 
-router.put("/:id", withAuth, async (req, res) => {
+
+router.post('/', withAuth, async (req, res) => {
     try {
-        const updatedTask = await Task.update(req.body, {
-            where: {
-                id: req.params.id,
-                user_id: req.session.user_id,
-            },
+        const newTask = await Task.create({
+            ...req.body,
+            user_id: req.session.user_id, 
         });
-        if (updatedTask[0] === 0) {
-            res.status(404).json({ message: "No task found with this id!" });
-            return;
-        }
-        res.status(200).json({ message: "Task updated successfully!" });
+
+        const newTaskData = newTask.get({ plain: true });
+        await appendTaskToFile(newTaskData).catch(err => console.error("Failed to append task to file:", err));
+
+        res.status(201).redirect('/tasks'); 
     } catch (err) {
-        res.status(500).json(err);
+        console.error(err);
+        res.status(400).render('error', { error: err });
     }
 });
 
