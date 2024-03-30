@@ -16,10 +16,10 @@ const signupFormHandler = async (event) => {
             document.location.replace('/');
         } else {
             const responseData = await response.json();
-            alert(responseData.message); // Display error message from server
+            alert(responseData.message); 
         }
     }
 };
 
 document
-    .querySelector('.signup-form').addEventListener('submit', loginFormHandler);
+    .querySelector('.signup-form').addEventListener('submit', signupFormHandler);

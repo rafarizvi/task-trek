@@ -3,14 +3,23 @@
         "id":  1,
         "title": "Dinner",
         "description": "Fdddamily",
-        "status": "completed"
+        "status": "completed",
+        "user_id": 1
 
     },
     {   
         "id":  2,
         "title": "lunch",
         "description": "gf",
-        "status": "inProgress"
+        "status": "inProgress",
+        "user_id": 2
+    },
+    {   
+        "id":  3,
+        "title": "lunch",
+        "description": "gf",
+        "status": "inProgress",
+        "used_id": 2
     }
 
 ]

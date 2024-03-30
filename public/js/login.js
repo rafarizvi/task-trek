@@ -12,19 +12,20 @@ const loginFormHandler = async (event) => {
         headers: { 'Content-Type': 'application/json' }
       });
 
-      const responseData = await response.json(); // Parse the JSON response
-
       if (response.ok) {
         document.location.replace('/');
       } else {
-        // Display error message from response
+        // Handle non-OK responses (e.g., display error message)
+        const responseData = await response.json();
         alert(responseData.message);
       }
     } catch (error) {
       console.error('Error logging in:', error);
-      alert('An error occurred while trying to log in.'); // Handle other errors
+      // Handle other errors (e.g., network issues)
+      alert('An error occurred while trying to log in.');
     }
   } else {
+    // Handle case where email or password is empty
     alert('Please enter both email and password.');
   }
 };

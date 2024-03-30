@@ -4,88 +4,42 @@ const withAuth = require('../utils/auth');
 
 
 
-router.get('/', async (req, res) => {
-  try {
-    
-    const taskData = await Task.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['username'],
-        },
-      ],
-    });
-
-
-    const tasks = taskData.map((task) => task.get({ plain: true }));
-
-    res.render('homepage', { 
-      tasks, 
-      logged_in: req.session.logged_in 
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.get('/tasks/:id', async (req, res) => {
-  try {
-    const taskData = await Task.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['username'],
-        },
-      ],
-    });
-
-    const task = taskData.get({ plain: true });
-
-    res.render('tasks', {
-      ...task,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 router.get('/', withAuth, async (req, res) => {
   try {
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Task }],
+    const tasks = await Task.findAll({
+      where: { user_id: req.session.user_id },
+      include: [{ model: User, attributes: ['username'] }],
     });
+    res.render('homepage', { tasks, logged_in: req.session.logged_in });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
-    const user = userData.get({ plain: true });
-
-    res.render('homepage', {
-      ...user,
-      logged_in: true
+router.get('/tasks/:id', withAuth, async (req, res) => {
+  try {
+    const task = await Task.findByPk(req.params.id, {
+      include: [{ model: User, attributes: ['username'] }],
     });
+    res.render('tasks', { ...task.get({ plain: true }), logged_in: req.session.logged_in });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 router.get('/login', (req, res) => {
- 
   if (req.session.logged_in) {
     res.redirect('/');
-    return;
+  } else {
+    res.render('login');
   }
-
-  res.render('login');
 });
 
 router.get('/register', (req, res) => {
-  
   if (req.session.logged_in) {
     res.redirect('/');
-    return;
+  } else {
+    res.render('register');
   }
-
-  res.render('register');
 });
-
 module.exports = router;
