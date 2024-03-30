@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskTemplate = Handlebars.compile(document.getElementById('task-template').innerHTML);
 
     async function displayTasks() {
-        const response = await fetch('/tasks');
+        const response = await fetch('/api/tasks');
         const tasks = await response.json();
 
         taskList.innerHTML = taskTemplate({ tasks });
