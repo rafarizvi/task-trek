@@ -72,7 +72,7 @@ const router = require('express').Router();
 // }));
 
 
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
