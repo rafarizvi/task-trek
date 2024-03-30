@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         taskList.innerHTML = taskTemplate({ tasks });
 
-
         const updateButtons = document.querySelectorAll('.update-status');
         updateButtons.forEach(button => {
             button.addEventListener('click', async (event) => {
@@ -32,6 +31,39 @@ document.addEventListener('DOMContentLoaded', () => {
         displayTasks();
     }
 
+    const addTaskForm = document.getElementById('addTaskForm');
+
+    addTaskForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(addTaskForm);
+        const title = formData.get('title');
+        const description = formData.get('description');
+
+        try {
+            const response = await fetch('/tasks', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, description })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to add task');
+            }
+
+ 
+            const addTaskModal = new bootstrap.Modal(document.getElementById('addTaskModal'));
+            addTaskModal.hide();
+
+
+            displayTasks();
+        } catch (error) {
+            console.error(error);
+            // Handle error
+        }
+    });
 
     displayTasks();
 });

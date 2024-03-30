@@ -72,7 +72,7 @@ const router = require('express').Router();
 // }));
 
 
-router.post('/register', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
@@ -98,18 +98,16 @@ router.post('/login', async (req, res) => {
     const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      return res.status(400).json({ message: 'Incorrect email or password, please try againssss' });
+      return res.status(400).json({ message: 'Incorrect email or password, please try again' });
     }
 
     req.session.user_id = userData.id;
     req.session.logged_in = true;
-
     req.session.save(() => {
-      res.status(200).json({ message: 'Login successful' });
+      res.redirect('/');
     });
   } catch (err) {
-    console.error('Error logging in:', err);
-    res.status(500).json({ message: 'An error occurred while logging in' });
+    res.status(400).json(err);
   }
 });
 
@@ -121,4 +119,3 @@ router.post('/logout', (req, res) => {
 });
 
 module.exports = router;
-
