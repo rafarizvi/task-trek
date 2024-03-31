@@ -5,7 +5,7 @@ console.log('tasks.js connected');
 // Removes tasks from view tasks pages
 const tasksEl = document.querySelectorAll('.taskList');
 
-const deleteNote = async (id, task) => {
+const deleteTask = async (id, task) => {
   try {
     await fetch(`/api/tasks/${id}`, {
         method: 'DELETE',
@@ -22,26 +22,11 @@ const deleteNote = async (id, task) => {
 tasksEl.forEach(task => {
     task.addEventListener('click', (e) => {
         const taskId = e.target.id
-        deleteNote(taskId, task);
+        deleteTask(taskId, task);
     });
 });
 
 
-
-
-// const deleteNote = (id) =>
-//   fetch(`/api/tasks/${id}`, {
-//     method: 'DELETE',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }
-//   });
-
-// tasksEl.forEach(task => {
-//     task.addEventListener('click', (e) => {
-//         deleteNote(e.target.id);
-//     });
-// });
 
     // async function displayTasks() {
     //     const response = await fetch('/api/tasks');
@@ -99,29 +84,29 @@ tasksEl.forEach(task => {
     //         addTaskModal.hide();
 
 
-            displayTasks();
-        } catch (error) {
-            console.error('Error adding task:', error);
-        }
-    });
+//             displayTasks();
+//         } catch (error) {
+//             console.error('Error adding task:', error);
+//         }
+//     });
 
-    taskList.addEventListener('click', async (event) => {
-        if (event.target.classList.contains('delete-task')) {
-            const taskId = event.target.dataset.taskId;
-            await deleteTask(taskId);
-        }
-    });
+//     taskList.addEventListener('click', async (event) => {
+//         if (event.target.classList.contains('delete-task')) {
+//             const taskId = event.target.dataset.taskId;
+//             await deleteTask(taskId);
+//         }
+//     });
 
-    async function deleteTask(taskId) {
-        try {
-            await fetch(`/api/tasks/${taskId}`, {
-                method: 'DELETE'
-            });
-            displayTasks();
-        } catch (error) {
-            console.error('Error deleting task:', error);
-        }
-    }
+//     async function deleteTask(taskId) {
+//         try {
+//             await fetch(`/api/tasks/${taskId}`, {
+//                 method: 'DELETE'
+//             });
+//             displayTasks();
+//         } catch (error) {
+//             console.error('Error deleting task:', error);
+//         }
+//     }
 
-    displayTasks();
-});
+//     displayTasks();
+// });
