@@ -3,6 +3,7 @@ const { Task } = require("../../models");
 const withAuth = require("../../utils/auth");
 const { appendTaskToFile } = require("../../utils/helpers");
 
+
 router.get('/', withAuth, async (req, res) => {
     try {
         const tasks = await Task.findAll({
@@ -16,7 +17,7 @@ router.get('/', withAuth, async (req, res) => {
         });
     } catch (err) {
         console.error(err);
-        res.status(500).render('error', { error: err });
+        res.status(500).render('error', { error: err }); // 
     }
 });
 
@@ -34,10 +35,35 @@ router.post('/', withAuth, async (req, res) => {
         res.status(201).redirect('/tasks'); 
     } catch (err) {
         console.error(err);
-        res.status(400).render('error', { error: err });
+        res.status(400).render('error', { error: err }); // 
     }
 });
 
+// UPDATE a task
+router.put('/:id', withAuth, async (req, res) => {
+    try {
+        const task = await Task.findByPk(req.params.id);
+
+        if (!task) {
+            res.status(404).json({ message: 'No task found with this id!' });
+            return;
+        }
+
+        if (task.user_id !== req.session.user_id) {
+            res.status(403).json({ message: 'You do not have permission to update this task' });
+            return;
+        }
+
+        await task.update(req.body);
+        const updatedTask = await task.get({ plain: true });
+        res.status(200).json(updatedTask);
+    } catch (err) {
+        console.error(err);
+        res.status(500).render('error', { error: err }); // 
+    }
+});
+
+// DELETE a task
 router.delete("/:id", withAuth, async (req, res) => {
     try {
         const taskData = await Task.destroy({
@@ -54,7 +80,8 @@ router.delete("/:id", withAuth, async (req, res) => {
 
         res.status(200).json(taskData);
     } catch (err) {
-        res.status(500).json(err);
+        console.error(err);
+        res.status(500).render('error', { error: err }); 
     }
 });
 

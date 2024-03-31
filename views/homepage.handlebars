@@ -1,4 +1,4 @@
-{{#if logged_in}}
+{{!-- {{#if logged_in}}
 <h1>My Tasks</h1>
 
 <div class="modal-content">
@@ -28,13 +28,17 @@
     </form>
   </div>
 
-<script id="task-template" type="text/x-handlebars-template"></script>
+
     {{#each tasks}}
-    <div class="box mt-3" data-task-id="{{this.id}}">
-      <h2 class="title is-5">{{this.title}}</h2>
+    <div class="box mt-5" data-task-id="{{this.id}}">
+      <h2 class="title is-3">{{this.title}}</h2>
       <p>Status: {{this.status}}</p>
+      <p>Priority:{{this.priority}}</p>
+      <p>Start Date:{{this.start_date}}</p>
+      <p>Due Date:{{this.due_date}}</p>
       <p>Description: {{this.description}}</p>
       <button class="update-status">Update Status</button>
+      <button class="delete-task">Delete</button>
     </div>
     {{/each}}
 
@@ -48,4 +52,4 @@
 {{else}}
 <h1>Please log in to view your tasks.</h1>
 {{/if}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script> --}}

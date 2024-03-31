@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     async function displayTasks() {
         try {
-            const response = await fetch('/api/tasks');
+            const response = await fetch('/');
             console.log('Response from server:', response);
     
             if (!response.ok) {
                 throw new Error('Failed to fetch tasks');
             }
-    
+
             const tasks = await response.json();
             console.log('Tasks received:', tasks);
     
@@ -45,14 +45,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    const addTaskForm = document.getElementById('addTaskForm');
 
     addTaskForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
         const formData = new FormData(addTaskForm);
-        // const title = formData.get('title');
-        // const description = formData.get('description');
         const taskData = {};
         formData.forEach((value, key) => {
             taskData[key] = value;
@@ -76,12 +73,27 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             displayTasks();
         } catch (error) {
-            console.error(error);
-
+            console.error('Error adding task:', error);
         }
     });
 
-    
+    taskList.addEventListener('click', async (event) => {
+        if (event.target.classList.contains('delete-task')) {
+            const taskId = event.target.dataset.taskId;
+            await deleteTask(taskId);
+        }
+    });
+
+    async function deleteTask(taskId) {
+        try {
+            await fetch(`/api/tasks/${taskId}`, {
+                method: 'DELETE'
+            });
+            displayTasks();
+        } catch (error) {
+            console.error('Error deleting task:', error);
+        }
+    }
 
     displayTasks();
 });
