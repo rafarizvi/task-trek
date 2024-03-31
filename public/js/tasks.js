@@ -1,5 +1,5 @@
 
-
+console.log('tasks.js connected');
     // async function displayTasks() {
     //     const response = await fetch('/api/tasks');
     //     const tasks = await response.json();
@@ -64,3 +64,6 @@
     // });
 
     // displayTasks();
+
+
+   

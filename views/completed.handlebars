@@ -1,8 +1,9 @@
+
+
 <table class="table">
     <thead>
         <tr>
             <th>Id</th>
-            <th>Team</th>
             <th>Title</th>
             <th>Description</th>
             <th>Start date</th>
@@ -12,26 +13,28 @@
         </tr>
     </thead>
 
+    {{#each tasks as |task| }}
+
+{{#ifEquals status "completed"}}
+    
     <tbody>
         <tr>
-            <th>1</th>
-            <td>
-                <a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester
-                    City</a>
-                <strong>(C)</strong>
-            </td>
-            <td>38</td>
-            <td>23</td>
-            <td>12</td>
-            <td>3</td>
-            <td>68</td>
-            <td>36</td>
-            <td>+32</td>
-            <td>
-                Qualification for the
-                <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
-                    title="2016–17 UEFA Champions League">Champions League group stage</a>
-            </td>
+            <th>{{id}}</th>
+            <td>{{title}}</td>
+            <td>{{description}}</td>
+            <td>{{format_date start_date}}</td>
+            <td>{{format_date due_date}}</td>
+            <td>{{priority}}</td>
+            <td>{{status}}</td>
         </tr>
     </tbody>
+
+{{/ifEquals}}
+    
+
+
+
+    {{/each}}
 </table>
+
+<script src="/js/tasks.js"></script>
