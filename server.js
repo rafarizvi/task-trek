@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
 
 const sess = {
-    secret: 'Super secret secret',
+    secret: process.env.SECRET,
     cookie: {
         maxAge: 300000,
         httpOnly: true,
@@ -44,8 +44,8 @@ app.use(express.static('public'));
 
 
 app.use(session(sess));
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 
 app.use(routes);
