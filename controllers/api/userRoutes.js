@@ -1,6 +1,6 @@
 const { User } = require('../../models');
 const router = require('express').Router();
-// const passport = require('passport');
+const passport = require('passport');
 // const GoogleStrategy = require('passport-google-oidc');
 // const registerRoute = require('./registerRoute');
 
@@ -112,7 +112,7 @@ router.post('/login', async (req, res) => {
 });
 
 // server-side route definition
-router.delete('/logout', (req, res) => {
+router.post('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       return res.status(500).json({ message: 'Failed to log out' });
