@@ -1,6 +1,5 @@
 {{#if logged_in}}
-<h1 class="title"> Welcome, {{ username }} </h1>
-
+<h1>My Tasks</h1>
 <div class="modal-content">
   <div class="box">
     <h2 class="title is-4">New Task</h2>
@@ -19,7 +18,7 @@
       </div>
       <div class="field is-grouped">
         <div class="control">
-          <button id="addBtn" class="button addTask is-primary" type="submit">Add Task</button>
+          <button id="addBtn" class="button is-primary" type="submit">Add Task</button>
         </div>
         <div class="control">
           <button class="button is-danger" type="button" data-bs-dismiss="modal">Cancel</button>
@@ -28,6 +27,25 @@
     </form>
   </div>
 
+    {{#each tasks}}
+    <div class="box mt-5" data-task-id="{{this.id}}">
+      <h2 class="title is-3">{{this.title}}</h2>
+      <p>Status: {{this.status}}</p>
+      <p>Priority:{{this.priority}}</p>
+      <p>Start Date:{{this.start_date}}</p>
+      <p>Due Date:{{this.due_date}}</p>
+      <p>Description: {{this.description}}</p>
+      <button class="update-status">Update Status</button>
+      <button class="delete-task">Delete</button>
+    </div>
+    {{/each}}
+
+
+
+
+
+
+</div>
 
 {{else}}
 <h1>Please log in to view your tasks.</h1>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8">
@@ -10,15 +10,15 @@
 </head>
 
 <body>
-  <section class="hero is-primary is-bold">
+  <section class="hero is-dark is-bold">
     <div class="hero-body">
       <div class="container">
         <nav class="navbar">
           <div class="navbar-brand">
             <h1 class="navbar-item">
-              <a href="/">Task Manager</a>
+              <a href="/" class="title has-text-light">Task Manager</a>
             </h1>
-            <span class="navbar-burger" id="nav-toggle">
+            <span class="navbar-burger burger has-text-light" id="nav-toggle">
               <span></span>
               <span></span>
               <span></span>
@@ -28,16 +28,15 @@
             <div class="navbar-end">
               <div class="navbar-item">
                 {{#if logged_in}}
-                <p class="buttons">
+                <div class="buttons">
                   <button id="logout" class="button is-light">Logout</button>
-                </p>
-                <p> HI ,{{username}}</p>
+                </div>
+                <p class="has-text-light">{{email}}</p>
                 {{else}}
                 <a href="/login" class="button is-light">Login</a>
                 {{/if}}
               </div>
               <div class="navbar-item">
-                <!-- Dark mode toggle button -->
                 <button id="dark-mode-toggle" class="button is-light">Dark Mode</button>
               </div>
             </div>
@@ -49,23 +48,31 @@
 
   <main class="section">
     <div class="container">
+      <div id="taskList"></div>
       {{{ body }}}
- <div id="taskList"></div>
-  </div>
-</main>
+    </div>
+  </main>
+
   <footer class="footer">
     <div class="content has-text-centered">
-      <p>
+      <p class="has-text-light">
         Task Manager &copy; 2024. All rights reserved.
       </p>
     </div>
   </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+
+  <script id="task-template" type="text/x-handlebars-template">
+    <!-- Your Handlebars template goes here -->
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
   <script src="/js/logout.js"></script>
   <script src="/js/tasks.js"></script>
 
-
-  
 </body>
+<<<<<<< HEAD
 
 </html>
+=======
+</html>
+>>>>>>> 6c9191c69d42ebee884e95310567ba6a2d3650e1
