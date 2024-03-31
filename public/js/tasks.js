@@ -1,21 +1,47 @@
 
 console.log('tasks.js connected');
 
+
+// Removes tasks from view tasks pages
 const tasksEl = document.querySelectorAll('.taskList');
 
-const deleteNote = (id) =>
-  fetch(`/api/tasks/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
+const deleteNote = async (id, task) => {
+  try {
+    await fetch(`/api/tasks/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      task.remove();
+  } catch (error) {
+    console.error('Error deleting task:', error.message);
+  }
+}
 
 tasksEl.forEach(task => {
     task.addEventListener('click', (e) => {
-        deleteNote(e.target.id);
+        const taskId = e.target.id
+        deleteNote(taskId, task);
     });
 });
+
+
+
+
+// const deleteNote = (id) =>
+//   fetch(`/api/tasks/${id}`, {
+//     method: 'DELETE',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   });
+
+// tasksEl.forEach(task => {
+//     task.addEventListener('click', (e) => {
+//         deleteNote(e.target.id);
+//     });
+// });
 
     // async function displayTasks() {
     //     const response = await fetch('/api/tasks');
