@@ -41,7 +41,7 @@ router.get('/tasks/:id', async (req, res) => {
 
     const task = taskData.get({ plain: true });
 
-    res.render('tasks', {
+    res.render('homepage', {
       ...task,
       logged_in: req.session.logged_in
     });

@@ -21,17 +21,17 @@ Task.init(
             allowNull: false,
         },
 
-        start_date: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW,
-        },
+        // start_date: {
+        //     type: DataTypes.DATE,
+        //     allowNull: false,
+        //     defaultValue: DataTypes.NOW,
+        // },
 
-        due_date: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW,
-        },
+        // due_date: {
+        //     type: DataTypes.DATE,
+        //     allowNull: false,
+        //     defaultValue: DataTypes.NOW,
+        // },
 
         priority: {
             type: DataTypes.STRING,
