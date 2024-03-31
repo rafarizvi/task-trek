@@ -1,5 +1,15 @@
 
 console.log('tasks.js connected');
+
+const tasksEl = document.querySelectorAll('.taskList');
+
+tasksEl.forEach(task => {
+    task.addEventListener('click', (e) => {
+        console.log(e.target.id)
+    });
+});
+
+
     // async function displayTasks() {
     //     const response = await fetch('/api/tasks');
     //     const tasks = await response.json();

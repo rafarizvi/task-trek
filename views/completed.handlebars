@@ -18,7 +18,7 @@
 {{#ifEquals status "completed"}}
     
     <tbody>
-        <tr>
+        <tr class="taskList">
             <th>{{id}}</th>
             <td>{{title}}</td>
             <td>{{description}}</td>
@@ -26,6 +26,8 @@
             <td>{{format_date due_date}}</td>
             <td>{{priority}}</td>
             <td>{{status}}</td>
+            <td><button id="{{id}}" class="button is-danger is-small is-rounded">remove</button></td>
+            
         </tr>
     </tbody>
 
