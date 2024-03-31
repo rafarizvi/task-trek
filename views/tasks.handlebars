@@ -1,17 +1,55 @@
+{{#if logged_in}}
+<h1>My Tasks</h1>
 
-{{!-- 
-        {{#each tasks}}
-        <div class="task">
-            <p>{{this.title}}</p>
-            <p>Description: {{this.description}}</p>
-            <p>Status: {{this.status}}</p>
-            <select class="status-select">
-                <option value="pending"{{#if (eq this.status "pending")}} selected{{/if}}>Pending</option>
-                <option value="completed"{{#if (eq this.status "completed")}} selected{{/if}}>Completed</option>
-                <option value="inProgress"{{#if (eq this.status "inProgress")}} selected{{/if}}>In Progress</option>
-            </select>
-            <button class"update-status">Update Status</button>
+<div class="modal-content">
+  <div class="box">
+    <h2 class="title is-4">New Task</h2>
+    <form id="addTaskForm">
+      <div class="field">
+        <label class="label">Task Name</label>
+        <div class="control">
+          <input class="input" type="text" name="title" placeholder="Enter task name" required>
         </div>
-        {{/each}} --}}
+      </div>
+      <div class="field">
+        <label class="label">Description</label>
+        <div class="control">
+          <textarea class="textarea" name="description" placeholder="Enter task description" required></textarea>
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button id="addBtn" class="button is-primary" type="submit">Add Task</button>
+        </div>
+        <div class="control">
+          <button class="button is-danger" type="button" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
 
 
+    {{#each tasks}}
+    <div class="box mt-5" data-task-id="{{this.id}}">
+      <h2 class="title is-3">{{this.title}}</h2>
+      <p>Status: {{this.status}}</p>
+      <p>Priority:{{this.priority}}</p>
+      <p>Start Date:{{this.start_date}}</p>
+      <p>Due Date:{{this.due_date}}</p>
+      <p>Description: {{this.description}}</p>
+      <button class="update-status">Update Status</button>
+      <button class="delete-task">Delete</button>
+    </div>
+    {{/each}}
+
+
+
+
+
+
+</div>
+
+{{else}}
+<h1>Please log in to view your tasks.</h1>
+{{/if}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
