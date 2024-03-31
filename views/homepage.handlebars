@@ -1,49 +1,7 @@
 {{#if logged_in}}
-<h1>My Tasks</h1>
+<h1 class="title"> Welcome, {{ username }} </h1>
 
-<div class="modal-content">
-  <div class="box">
-    <h2 class="title is-4">New Task</h2>
-    <form id="addTaskForm">
-      <div class="field">
-        <label class="label">Task Name</label>
-        <div class="control">
-          <input class="input" type="text" name="title" placeholder="Enter task name" required>
-        </div>
-      </div>
-      <div class="field">
-        <label class="label">Description</label>
-        <div class="control">
-          <textarea class="textarea" name="description" placeholder="Enter task description" required></textarea>
-        </div>
-      </div>
-      <div class="field is-grouped">
-        <div class="control">
-          <button id="addBtn" class="button is-primary" type="submit">Add Task</button>
-        </div>
-        <div class="control">
-          <button class="button is-danger" type="button" data-bs-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-    </form>
-  </div>
-
-<script id="task-template" type="text/x-handlebars-template"></script>
-    {{#each tasks}}
-    <div class="box mt-3" data-task-id="{{this.id}}">
-      <h2 class="title is-5">{{this.title}}</h2>
-      <p>Status: {{this.status}}</p>
-      <p>Description: {{this.description}}</p>
-      <button class="update-status">Update Status</button>
-    </div>
-    {{/each}}
-
-
-
-
-
-
-</div>
+<a href="/tasks" class="button is-primary">My Tasks</a>
 
 {{else}}
 <h1>Please log in to view your tasks.</h1>
