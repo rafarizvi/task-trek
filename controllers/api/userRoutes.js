@@ -90,9 +90,11 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
+    console.log(req.body)
     const userData = await User.findOne({ where: { email: req.body.email } });
 
-    if (!userData || !(await userData.checkPassword(req.body.password))) {
+    if (!userData || !(await userData.checkPassword(req.body.password)
+    )) {
       return res.status(400).json({ message: 'Incorrect email or password, please try again' });
     }
 
@@ -105,6 +107,7 @@ router.post('/login', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
 
 router.post('/logout', (req, res) => {
   req.session.destroy((err) => {

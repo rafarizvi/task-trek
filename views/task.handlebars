@@ -1,0 +1,17 @@
+<div id="taskList">
+    {{#each tasks}}
+    <div class="task">
+        <p>Title: {{this.title}}</p>
+        <p>Description: {{this.description}}</p>
+        <p>Status: {{this.status}}</p>
+        <p>Created by: {{this.User.username}}</p> 
+        <select class="status-select">
+            <option value="pending" {{#if (eq this.status "pending" )}} selected{{/if}}>Pending</option>
+            <option value="completed" {{#if (eq this.status "completed" )}} selected{{/if}}>Completed</option>
+            <option value="inProgress" {{#if (eq this.status "inProgress" )}} selected{{/if}}>In Progress</option>
+        </select>
+        <button class="update-status">Update Status</button>
+    </div>
+    {{/each}}
+</div>
+<script src="../public/js/tasks.js"></script>
