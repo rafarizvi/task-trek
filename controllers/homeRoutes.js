@@ -4,9 +4,39 @@ const withAuth = require('../utils/auth');
 
 
 
-router.get('/', async (req, res) => {
-  try {
+// router.get('/', async (req, res) => {
+//   try {
     
+//     const taskData = await Task.findAll({
+//       include: [
+//         {
+//           model: User,
+//           attributes: ['username'],
+//         },
+//       ],
+//     });
+
+
+//     const tasks = taskData.map((task) => task.get({ plain: true }));
+
+//     res.render('homepage', { 
+//       tasks, 
+//       logged_in: req.session.logged_in 
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+
+router.get('/add-task', async (req, res) => {
+  try {
+    // If the user is not logged in, redirect the user to the login page
+    if (!req.session.logged_in) {
+      return res.redirect('/login');
+    }
+
+    // If the user is logged in, allow them to view tasks
     const taskData = await Task.findAll({
       include: [
         {
@@ -16,119 +46,97 @@ router.get('/', async (req, res) => {
       ],
     });
 
+    const tasks = taskData.map(task => task.get({ plain: true }));
 
-    const tasks = taskData.map((task) => task.get({ plain: true }));
-
-    res.render('homepage', { 
-      tasks, 
-      logged_in: req.session.logged_in 
-    });
+    res.render('add-task', { tasks, loggedIn: req.session.loggedIn });
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
   }
 });
 
 
-// router.get('/tasks', async (req, res) => {
-//   try {
-//     const taskData = await Task.findByPk(req.params.id, {
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['username'],
-//         },
-//       ],
-//     });
-
-//     // const task = taskData.get({ plain: true });
-
-//     res.render('tasks', {
-//       // ...task,
-//       logged_in: req.session.logged_in
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-router.get('/tasks', async (req, res) => {
-  try {
-    if (req.session.logged_in) {
-      res.render('tasks');
-      return;
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.get('/add-task', async (req, res) => {
-  try {
-    if (req.session.logged_in) {
-      res.render('add-task');
-      return;
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
 
 router.get('/pending', async (req, res) => {
   try {
-    if (req.session.logged_in) {
-      res.render('pending');
-      return;
+    // If the user is not logged in, redirect the user to the login page
+    if (!req.session.logged_in) {
+      return res.redirect('/login');
     }
+
+    // If the user is logged in, allow them to view tasks
+    const taskData = await Task.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
+    });
+
+    const tasks = taskData.map(task => task.get({ plain: true }));
+
+    res.render('pending', { tasks, loggedIn: req.session.loggedIn });
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
   }
 });
+
+
 
 router.get('/inprogress', async (req, res) => {
   try {
-    if (req.session.logged_in) {
-      res.render('inprogress');
-      return;
+    // If the user is not logged in, redirect the user to the login page
+    if (!req.session.logged_in) {
+      return res.redirect('/login');
     }
+
+    // If the user is logged in, allow them to view tasks
+    const taskData = await Task.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
+    });
+
+    const tasks = taskData.map(task => task.get({ plain: true }));
+
+    res.render('inprogress', { tasks, loggedIn: req.session.loggedIn });
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
   }
 });
+
 
 router.get('/completed', async (req, res) => {
   try {
-    if (req.session.logged_in) {
-      res.render('completed');
-      return;
+    // If the user is not logged in, redirect the user to the login page
+    if (!req.session.logged_in) {
+      return res.redirect('/login');
     }
+
+    // If the user is logged in, allow them to view tasks
+    const taskData = await Task.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
+    });
+
+    const tasks = taskData.map(task => task.get({ plain: true }));
+
+    res.render('completed', { tasks, loggedIn: req.session.loggedIn });
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
   }
 });
-
-
-
-// // GET one painting
-// router.get('/painting/:id', async (req, res) => {
-//   // If the user is not logged in, redirect the user to the login page
-//   if (!req.session.loggedIn) {
-//     res.redirect('/login');
-//   } else {
-//     // If the user is logged in, allow them to view the painting
-//     try {
-//       const dbPaintingData = await Painting.findByPk(req.params.id);
-
-//       const painting = dbPaintingData.get({ plain: true });
-
-//       res.render('painting', { painting, loggedIn: req.session.loggedIn });
-//     } catch (err) {
-//       console.log(err);
-//       res.status(500).json(err);
-//     }
-//   }
-// });
-
-
 
 
 router.get('/', withAuth, async (req, res) => {

@@ -1,20 +1,4 @@
-import { setBtnIdCallback } from './home.js';
 
-// Set the callback to receive the btnId value
-setBtnIdCallback((btnId) => {
-    // Use the btnId value here
-    console.log(btnId);
-});
-
-
-// console.log('js connected');
-
-// import { btnId } from './home.js'; // Importing btnId from file1.js
-
-// // Now you can use btnId variable here
-// console.log(btnId);
-
-    
 
     // async function displayTasks() {
     //     const response = await fetch('/api/tasks');
