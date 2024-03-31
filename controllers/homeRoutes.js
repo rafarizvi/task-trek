@@ -3,32 +3,6 @@ const { Task, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 
-
-// router.get('/', async (req, res) => {
-//   try {
-    
-//     const taskData = await Task.findAll({
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['username'],
-//         },
-//       ],
-//     });
-
-
-//     const tasks = taskData.map((task) => task.get({ plain: true }));
-
-//     res.render('homepage', { 
-//       tasks, 
-//       logged_in: req.session.logged_in 
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-
 router.get('/add-task', async (req, res) => {
   try {
     // If the user is not logged in, redirect the user to the login page
@@ -56,7 +30,7 @@ router.get('/add-task', async (req, res) => {
 });
 
 
-
+// route for pending tasks
 router.get('/pending', async (req, res) => {
   try {
     // If the user is not logged in, redirect the user to the login page
@@ -84,7 +58,7 @@ router.get('/pending', async (req, res) => {
 });
 
 
-
+// route for inprogress tasks
 router.get('/inprogress', async (req, res) => {
   try {
     // If the user is not logged in, redirect the user to the login page
@@ -111,7 +85,7 @@ router.get('/inprogress', async (req, res) => {
   }
 });
 
-
+// route for completed tasks
 router.get('/completed', async (req, res) => {
   try {
     // If the user is not logged in, redirect the user to the login page
