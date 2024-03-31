@@ -3,12 +3,19 @@ console.log('tasks.js connected');
 
 const tasksEl = document.querySelectorAll('.taskList');
 
+const deleteNote = (id) =>
+  fetch(`/api/tasks/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+
 tasksEl.forEach(task => {
     task.addEventListener('click', (e) => {
-        console.log(e.target.id)
+        deleteNote(e.target.id);
     });
 });
-
 
     // async function displayTasks() {
     //     const response = await fetch('/api/tasks');

@@ -1,8 +1,8 @@
-
-
-<table class="table">
+<h1 class="task-status">Completed Tasks</h1>
+<div class="card task-card">
+<table class="table is-bordered is-striped is-hoverable is-fullwidth completed-table">
     <thead>
-        <tr>
+        <tr class="is-success">
             <th>Id</th>
             <th>Title</th>
             <th>Description</th>
@@ -14,9 +14,8 @@
     </thead>
 
     {{#each tasks as |task| }}
+    {{#ifEquals status "completed"}}
 
-{{#ifEquals status "completed"}}
-    
     <tbody>
         <tr class="taskList">
             <th>{{id}}</th>
@@ -27,16 +26,14 @@
             <td>{{priority}}</td>
             <td>{{status}}</td>
             <td><button id="{{id}}" class="button is-danger is-small is-rounded">remove</button></td>
-            
+
         </tr>
     </tbody>
 
-{{/ifEquals}}
-    
-
-
-
+    {{/ifEquals}}
     {{/each}}
+
 </table>
 
 <script src="/js/tasks.js"></script>
+</div>

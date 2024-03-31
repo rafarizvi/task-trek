@@ -24,7 +24,7 @@
         "id":  4,
         "title": "lunch",
         "description": "gf",
-        "status": "inProgress"
+        "status": "completed"
     },
 
     {   
@@ -39,6 +39,34 @@
         "title": "lunch",
         "description": "gf",
         "status": "inProgress"
+    },
+
+    {   
+        "id":  7,
+        "title": "lunch",
+        "description": "gf",
+        "status": "inProgress"
+    },
+
+    {   
+        "id":  8,
+        "title": "lunch",
+        "description": "gf",
+        "status": "pending"
+    },
+
+    {   
+        "id":  9,
+        "title": "lunch",
+        "description": "gf",
+        "status": "pending"
+    },
+
+    {   
+        "id":  10,
+        "title": "lunch",
+        "description": "gf",
+        "status": "pending"
     }
 
 ]
