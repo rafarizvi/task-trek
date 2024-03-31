@@ -44,8 +44,8 @@ app.use(express.static('public'));
 
 
 app.use(session(sess));
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.use(routes);
