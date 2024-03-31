@@ -1,35 +1,32 @@
 <body>
 
-    <nav>
-        <h4>Log in</h4>
-        <div class="container mt-4">
-            <div class="card" style="width: 18rem;">
-                <div class="card-header">Log In</div>
-                <div class="card-body">
-                    <form action="/api/users/login" method="POST">
-                        <div class="mb-3">
-                            <label for="email-login" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email-login" name="email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password-login" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password-login" name="password" autocomplete="current-password">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
+
+    <h4 class="cntr"> Log in </h4>
+    <div class="card container mt-4" style="width: 22rem;">
+        <form class="loginForm" action="/api/users/login" method="POST">
+            <div class="mb-3">
+
+                <input type="email" placeholder="Email" class="form-control input is-medium is-focused loginBtns"
+                    id="email-login" name="email">
+
+                <input type="password" placeholder="Password" class="form-control input is-medium is-focused loginBtns"
+                    id="password-login" name="password" autocomplete="current-password">
+
+                <button type="submit" class="button is-success submit-btn loginBtns">Log
+                    in</button>
+
+                <button type="submit" class="button is-success submit-btn loginBtns"><a href="/register">Create new
+                        account</a></button>
+
+                <h1 style="text-align:center;" class="loginBtns">Or</h1>
+                <a class="button is-link loginBtns google" style="width: 18rem;" href="/login/federated/google">Sign in
+                    with Google</a>
             </div>
-        </div>
-        <ul>
-            <P>Click register if you don't have an account.</P>
-            <li><a href="/register">Register</a></li>
-        </ul>
-        <h1>Or sign in Using </h1>
-        <ul>
-            <a class="button google" href="/login/federated/google">Sign in with Google</a>
-        </ul>
-    </nav>
-    
+        </form>
+    </div>
+
+
     <script src="/public/js/login.js"></script>
 </body>
+
 </html>
