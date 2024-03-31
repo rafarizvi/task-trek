@@ -104,7 +104,7 @@ router.post('/login', async (req, res) => {
     req.session.user_id = userData.id;
     req.session.logged_in = true;
     req.session.save(() => {
-      res.redirect('/');
+      res.redirect('/api/tasks');
     });
   } catch (err) {
     res.status(400).json(err);

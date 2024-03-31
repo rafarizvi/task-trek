@@ -1,5 +1,9 @@
 {{#if logged_in}}
 <h1>My Tasks</h1>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e2ffcdb164ebaaa5918f6b58b83afcd0c474b9b1
 <div class="modal-content">
   <div class="box">
     <h2 class="title is-4">New Task</h2>
@@ -26,6 +30,7 @@
       </div>
     </form>
   </div>
+
     {{#each tasks}}
     <div class="box mt-5" data-task-id="{{this.id}}">
       <h2 class="title is-3">{{this.title}}</h2>
@@ -38,9 +43,15 @@
       <button class="delete-task">Delete</button>
     </div>
     {{/each}}
+
+
+
+
+
+
 </div>
+
 {{else}}
 <h1>Please log in to view your tasks.</h1>
 {{/if}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-
