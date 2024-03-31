@@ -1,0 +1,76 @@
+
+#my-task {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 36px;
+    font-weight: bolder;
+    color: rgb(7, 81, 105);
+}
+
+.container-1 {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+    font-size: xx-large;
+    color:rgb(0, 153, 255);
+    font-weight: bold;
+}
+
+.cntr {
+    display: flex;
+    justify-content: center;
+}
+
+.cntr2 {
+    display: block;
+    text-align: center;
+}
+
+.taskbtn a, .taskbtn2 a {
+    color:rgb(255, 255, 255);
+}
+
+.loginForm {
+    padding: 10%;
+    padding-top: 5%;
+}
+
+h4 {
+    font-size: 22px;
+}
+
+.loginBtns {
+    margin-top: 10%;
+    width: 18rem;
+}
+
+.taskbtn {
+    width: 14rem;
+    height: 14rem;
+    border-radius: 100%;
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+
+.taskbtn2 {
+    width: 44rem;
+    height: 5rem;
+    margin-left: 2rem;
+}
+
+@media (max-width: 777px) {
+    .taskbtn {
+        width: 20rem;
+        height: 4rem;
+        border-radius: 20%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .taskbtn2 {
+        width: 20rem;
+        height: 4rem;
+        margin-left: 0;
+    }
+
+}
+

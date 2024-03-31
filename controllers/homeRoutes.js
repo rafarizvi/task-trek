@@ -28,27 +28,108 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/tasks/:id', async (req, res) => {
+
+// router.get('/tasks', async (req, res) => {
+//   try {
+//     const taskData = await Task.findByPk(req.params.id, {
+//       include: [
+//         {
+//           model: User,
+//           attributes: ['username'],
+//         },
+//       ],
+//     });
+
+//     // const task = taskData.get({ plain: true });
+
+//     res.render('tasks', {
+//       // ...task,
+//       logged_in: req.session.logged_in
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+router.get('/tasks', async (req, res) => {
   try {
-    const taskData = await Task.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['username'],
-        },
-      ],
-    });
-
-    const task = taskData.get({ plain: true });
-
-    res.render('tasks', {
-      ...task,
-      logged_in: req.session.logged_in
-    });
+    if (req.session.logged_in) {
+      res.render('tasks');
+      return;
+    }
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+router.get('/add-task', async (req, res) => {
+  try {
+    if (req.session.logged_in) {
+      res.render('add-task');
+      return;
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/pending', async (req, res) => {
+  try {
+    if (req.session.logged_in) {
+      res.render('pending');
+      return;
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/inprogress', async (req, res) => {
+  try {
+    if (req.session.logged_in) {
+      res.render('inprogress');
+      return;
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/completed', async (req, res) => {
+  try {
+    if (req.session.logged_in) {
+      res.render('completed');
+      return;
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
+// // GET one painting
+// router.get('/painting/:id', async (req, res) => {
+//   // If the user is not logged in, redirect the user to the login page
+//   if (!req.session.loggedIn) {
+//     res.redirect('/login');
+//   } else {
+//     // If the user is logged in, allow them to view the painting
+//     try {
+//       const dbPaintingData = await Painting.findByPk(req.params.id);
+
+//       const painting = dbPaintingData.get({ plain: true });
+
+//       res.render('painting', { painting, loggedIn: req.session.loggedIn });
+//     } catch (err) {
+//       console.log(err);
+//       res.status(500).json(err);
+//     }
+//   }
+// });
+
+
+
 
 router.get('/', withAuth, async (req, res) => {
   try {
