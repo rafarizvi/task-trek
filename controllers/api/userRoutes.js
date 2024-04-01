@@ -4,7 +4,7 @@ const passport = require('passport');
 // const GoogleStrategy = require('passport-google-oidc');
 // const registerRoute = require('./registerRoute');
 
-// router.post('/login', registerRoute.registerUser);
+// router.post('/register', registerRoute.registerUser);
 
 // passport.use(new GoogleStrategy({
 //   clientID: process.env['GOOGLE_CLIENT_ID'],
@@ -72,34 +72,11 @@ const passport = require('passport');
 // }));
 
 
+
+
 router.post('/register', async (req, res) => {
   try {
     const userData = await User.create(req.body);
-
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
-
-      res.status(200).json(userData);
-    });
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-router.post('/login', async (req, res) => {
-  try {
-    const userData = await User.findOne({ where: { email: req.body.email } });
-
-    if (!userData) {
-      return res.status(400).json({ message: 'Incorrect email or password, please try again' });
-    }
-
-    const validPassword = await userData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      return res.status(400).json({ message: 'Incorrect email or password, please try again' });
-    }
 
     req.session.user_id = userData.id;
     req.session.logged_in = true;
@@ -111,16 +88,37 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// server-side route definition
+router.post('/login', async (req, res) => {
+  try {
+    console.log(req.body)
+    const userData = await User.findOne({ where: { email: req.body.email } });
+
+    if (!userData || !(await userData.checkPassword(req.body.password)
+    )) {
+      return res.status(400).json({ message: 'Incorrect email or password, please try again' });
+    }
+
+    req.session.user_id = userData.id;
+    req.session.logged_in = true;
+    req.session.save(() => {
+      res.redirect('/');   
+    });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+
 router.post('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       return res.status(500).json({ message: 'Failed to log out' });
     }
-    res.clearCookie('connect.sid'); // Adjust cookie name if needed
+    res.clearCookie('connect.sid'); 
     res.status(204).json({ message: 'Logged out successfully' });
   });
 });
+
 
 
 
