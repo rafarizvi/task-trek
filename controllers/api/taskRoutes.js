@@ -21,6 +21,25 @@ router.get('/', withAuth, async (req, res) => {
     }
 });
 
+router.get('/:id', withAuth, async (req, res) => {
+    try {
+        const task = await Task.findByPk(req.params.id, {
+            include: [{ model: User, attributes: ['username'] }]
+        });
+        if (!task) {
+            res.status(404).render('error', { error: "Task not found" });
+            return;
+        }
+        const taskPlain = task.get({ plain: true });
+        res.render('task', {
+            task: taskPlain,
+            logged_in: req.session.logged_in
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).render('error', { error: err }); //
+    }
+});
 
 router.post('/', withAuth, async (req, res) => {
     try {
