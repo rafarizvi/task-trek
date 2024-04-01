@@ -1,32 +1,7 @@
 {{#if logged_in}}
 <h1 class="title"> Welcome, {{ username }} </h1>
 
-<div class="modal-content">
-  <div class="box">
-    <h2 class="title is-4">New Task</h2>
-    <form id="addTaskForm">
-      <div class="field">
-        <label class="label">Task Name</label>
-        <div class="control">
-          <input class="input" type="text" name="title" placeholder="Enter task name" required>
-        </div>
-      </div>
-      <div class="field">
-        <label class="label">Description</label>
-        <div class="control">
-          <textarea class="textarea" name="description" placeholder="Enter task description" required></textarea>
-        </div>
-      </div>
-      <div class="field is-grouped">
-        <div class="control">
-          <button id="addBtn" class="button addTask is-primary" type="submit">Add Task</button>
-        </div>
-        <div class="control">
-          <button class="button is-danger" type="button" data-bs-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-    </form>
-  </div>
+<a href="/api/tasks" class="button is-primary">My Tasks</a>
 
 
 {{else}}

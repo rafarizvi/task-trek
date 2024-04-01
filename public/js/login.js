@@ -17,7 +17,7 @@
         const responseData = await response.json(); // Parse the JSON response
   
         if (response.ok) {
-          document.location.replace('/');
+          document.location.replace('/api/tasks');
         } else {
           // Display error message from response
           alert(responseData.message);

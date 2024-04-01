@@ -27,7 +27,7 @@
     </form>
   </div>
 
-    {{#each tasks}}
+   {{#each tasks}}
     <div class="box mt-5" data-task-id="{{this.id}}">
       <h2 class="title is-3">{{this.title}}</h2>
       <p>Status: {{this.status}}</p>
@@ -35,10 +35,18 @@
       <p>Start Date:{{this.start_date}}</p>
       <p>Due Date:{{this.due_date}}</p>
       <p>Description: {{this.description}}</p>
-      <button class="update-status">Update Status</button>
+      <div class="update-status">
+        <label for="status-select-{{this.id}}">Update Status:</label>
+        <select id="status-select-{{this.id}}">
+          <option value="pending">Pending</option>
+          <option value="in_progress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+        <button class="update-status-button">Update</button>
+      </div>
       <button class="delete-task">Delete</button>
     </div>
-    {{/each}}
+{{/each}}
 
 
 

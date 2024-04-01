@@ -4,7 +4,7 @@ const passport = require('passport');
 // const GoogleStrategy = require('passport-google-oidc');
 // const registerRoute = require('./registerRoute');
 
-// router.post('/login', registerRoute.registerUser);
+// router.post('/register', registerRoute.registerUser);
 
 // passport.use(new GoogleStrategy({
 //   clientID: process.env['GOOGLE_CLIENT_ID'],
@@ -120,23 +120,6 @@ router.post('/logout', (req, res) => {
 });
 
 
-// router.get('/', withAuth, async (req, res) => {
-//   try {
-//     const userData = await User.findByPk(req.session.user_id, {
-//       attributes: { exclude: ['password'] },
-//       include: [{ model: Task }],
-//     });
-
-//     const user = userData.get({ plain: true });
-
-//     res.render('homepage', {
-//       ...user,
-//       logged_in: true
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 
 
 module.exports = router;
