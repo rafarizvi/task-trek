@@ -1,4 +1,3 @@
-
 const logout = async () => {
   try {
     const response = await fetch('/api/users/logout', {
@@ -20,6 +19,7 @@ const logout = async () => {
     console.error('Error logging out:', error);
   }
 };
+
 
 document.querySelector('#logout').addEventListener('click', logout);
 
