@@ -1,8 +1,8 @@
 const { User } = require('../../models');
 const router = require('express').Router();
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oidc');
-const registerRoute = require('./registerRoute');
+// const passport = require('passport');
+// const GoogleStrategy = require('passport-google-oidc');
+// const registerRoute = require('./registerRoute');
 
 router.post('/login', registerRoute.registerUser);
 
@@ -72,7 +72,7 @@ router.get('/oauth2/redirect/google', passport.authenticate('google', {
 }));
 
 
-router.post('/register', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
@@ -111,17 +111,12 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// server-side route definition
 router.post('/logout', (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      return res.status(500).json({ message: 'Failed to log out' });
-    }
-    res.clearCookie('connect.sid'); // Adjust cookie name if needed
-    res.status(204).json({ message: 'Logged out successfully' });
+  req.session.destroy(() => {
+    res.clearCookie('session_id'); 
+    res.status(204).send(); 
   });
 });
 
-
-
 module.exports = router;
+

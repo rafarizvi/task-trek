@@ -84,29 +84,14 @@ tasksEl.forEach(task => {
     //         addTaskModal.hide();
 
 
-//             displayTasks();
-//         } catch (error) {
-//             console.error('Error adding task:', error);
-//         }
-//     });
+    //         displayTasks();
+    //     } catch (error) {
+    //         console.error(error);
+    //         // Handle error
+    //     }
+    // });
 
-//     taskList.addEventListener('click', async (event) => {
-//         if (event.target.classList.contains('delete-task')) {
-//             const taskId = event.target.dataset.taskId;
-//             await deleteTask(taskId);
-//         }
-//     });
+    // displayTasks();
 
-//     async function deleteTask(taskId) {
-//         try {
-//             await fetch(`/api/tasks/${taskId}`, {
-//                 method: 'DELETE'
-//             });
-//             displayTasks();
-//         } catch (error) {
-//             console.error('Error deleting task:', error);
-//         }
-//     }
 
-//     displayTasks();
-// });
+   
