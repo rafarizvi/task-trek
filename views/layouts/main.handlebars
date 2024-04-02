@@ -4,21 +4,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task Manager</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"> 
+ <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+<title>Task manager</title>
+
 </head>
 
 <body>
-  <section class="hero is-dark is-bold">
+  <section class="hero is-dark is-bold has-shadow">
     <div class="hero-body">
       <div class="container">
-        <nav class="navbar">
+        <nav class="navbar" aria-label="main navigation">
           <div class="navbar-brand">
             <h1 class="navbar-item">
               <a href="/" class="title has-text-light">Task Manager</a>
             </h1>
-            <span class="navbar-burger burger has-text-light" id="nav-toggle">
+            <span class="navbar-burger burger has-text-light" id="nav-toggle" data-target="navbar-menu">
               <span></span>
               <span></span>
               <span></span>
@@ -27,24 +31,27 @@
           <div class="navbar-menu" id="navbar-menu">
             <div class="navbar-end">
               <div class="navbar-item">
-                {{#if logged_in}}
+
                 <div class="buttons">
-                  <button id="logout" class="button is-light">Logout</button>
+                  <button id="logout" class="button is-primary is-inverted is-outlined">Logout</button>
                 </div>
-                <p class="has-text-light">{{email}}</p>
-                {{else}}
-                <a href="/login" class="button is-light">Login</a>
-                {{/if}}
+                <p class="has-text-light">Welcome !!  {{email}}</p>
               </div>
               <div class="navbar-item">
-                <button id="dark-mode-toggle" class="button is-light">Dark Mode</button>
+                <button id="dark-mode-toggle" class="button is-primary is-inverted is-outlined">Dark Mode</button>
               </div>
             </div>
           </div>
         </nav>
       </div>
     </div>
+
+    
   </section>
+
+
+
+  
 
   <main class="section">
     <div class="container">
