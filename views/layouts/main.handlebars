@@ -1,16 +1,15 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"> 
- <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
 
-<title>Task manager</title>
+  <title>Task manager</title>
 
 </head>
 
@@ -36,7 +35,7 @@
                 <div class="buttons">
                   <button id="logout" class="button is-primary is-inverted is-outlined">Logout</button>
                 </div>
-                <p class="has-text-light">Welcome !!  {{email}}</p>
+                <p class="has-text-light">Welcome !{{email}}</p>
               </div>
               <div class="navbar-item">
                 <button id="dark-mode-toggle" class="button is-primary is-inverted is-outlined">Dark Mode</button>
@@ -47,26 +46,36 @@
       </div>
     </div>
 
-    
+
   </section>
 
 
 
-  
+
 
   <main class="section">
     <div class="container">
       <div id="taskList"></div>
       {{{ body }}}
-    </main>
-    <footer>
-      
-    </footer>
-  </div>
+    </div>
+  </main>
 
-  {{#if logged_in}}
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p class="has-text-light">
+        Task Manager &copy; 2024. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script id="task-template" type="text/x-handlebars-template">
+    <!-- Your Handlebars template goes here -->
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
   <script src="/js/logout.js"></script>
-  {{/if}}
+  <script src="/js/tasks.js"></script>
+
 </body>
 
 </html>

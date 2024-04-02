@@ -23,40 +23,39 @@ const updateForm = async (event) => {
 };
 
 // Add an event listener to the form submission
-document
-    .getElementById("addTaskForm")
-    .addEventListener("submit", async function (event) {
-        event.preventDefault(); // Prevent the default form submission behavior
+// document.getElementById("addTaskForm")
+// .addEventListener("submit", async function (event) {
+//         event.preventDefault(); // Prevent the default form submission behavior
 
-        // Extract task details from the form
-        const title = document.querySelector('input[name="title"]').value.trim();
-        const description = document
-            .querySelector('textarea[name="description"]')
-            .value.trim();
+//         // Extract task details from the form
+//         const title = document.querySelector('input[name="title"]').value.trim();
+//         const description = document
+//             .querySelector('textarea[name="description"]')
+//             .value.trim();
 
-        try {
-            // Send a POST request to the server to add the new task
-            const response = await fetch("/api/tasks", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ title, description }),
-            });
+//         try {
+//             // Send a POST request to the server to add the new task
+//             const response = await fetch("/api/tasks", {
+//                 method: "POST",
+//                 headers: {
+//                     "Content-Type": "application/json",
+//                 },
+//                 body: JSON.stringify({ title, description }),
+//             });
 
-            if (response.ok) {
-                // If the task was added successfully, reload the tasks on the page
-                document.location.reload();
-            } else {
-                // If there was an error, display an error message
-                const responseData = await response.json();
-                alert(responseData.message);
-            }
-        } catch (error) {
-            console.error("Error adding task:", error);
-            alert("An error occurred while adding the task.");
-        }
-    });
+//             if (response.ok) {
+//                 // If the task was added successfully, reload the tasks on the page
+//                 document.location.reload();
+//             } else {
+//                 // If there was an error, display an error message
+//                 const responseData = await response.json();
+//                 alert(responseData.message);
+//             }
+//         } catch (error) {
+//             console.error("Error adding task:", error);
+//             alert("An error occurred while adding the task.");
+//         }
+//     });
 
 const updateButton = async (event) => {
     event.preventDefault();
