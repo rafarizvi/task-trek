@@ -34,13 +34,9 @@ const sess = {
 };
 
 
+
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
-
-// Handlebar helper.
-hbs.handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
-    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
-});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

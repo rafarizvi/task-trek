@@ -1,22 +1,9 @@
 {{#if logged_in}}
+<h1 class="title"> Welcome, {{ username }} </h1>
 
-<div class="container-1">
-<h1 id="my-task">My Tasks</h1> 
-</div> 
+<a href="/api/tasks" class="button is-primary">My Tasks</a>
 
 
-<div id="btns">
-  <div class="cntr">
-    <a href="/add-task"><button class="button is-link is-large is-rounded taskbtn2" type="button" data-bs-dismiss="modal">Add new task</button></a>
-  </div>
-  <div class="cntr2">
-    <a href="/pending"><button class="button is-info is-large is-rounded taskbtn" type="button" data-bs-dismiss="modal">Pending</button></a>
-    <a href="/inprogress"><button class="button is-warning is-large is-rounded taskbtn" type="button" data-bs-dismiss="modal">In-progress</button></a>
-    <a href="/completed"><button class="button is-success is-large is-rounded taskbtn" type="button" data-bs-dismiss="modal">Completed</button></a>
-  </div>
-</div>
-
- 
 {{else}}
 <h1>Please log in to view your tasks.</h1>
 {{/if}}
