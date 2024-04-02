@@ -8,7 +8,7 @@ const authRouter = require('./controllers/api/userRoutes');
 const passport = require('passport');
 const taskRoutes = require('./controllers/api/taskRoutes');
 
-// const fs = require('fs').promises;
+const fs = require('fs').promises;
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -34,13 +34,9 @@ const sess = {
 };
 
 
+
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
-
-// Handlebar helper.
-hbs.handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
-    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
-});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
