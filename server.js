@@ -6,6 +6,9 @@ const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 const authRouter = require('./controllers/api/userRoutes');
 const passport = require('passport');
+const taskRoutes = require('./controllers/api/taskRoutes');
+
+// const fs = require('fs').promises;
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -46,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 
 app.use(routes);

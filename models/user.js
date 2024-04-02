@@ -2,6 +2,8 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
+
+
 class User extends Model {
     checkPassword(loginPass) {
         return bcrypt.compareSync(loginPass, this.password);
@@ -18,12 +20,13 @@ User.init(
         },
         username: {
             type: DataTypes.STRING,
-            // allowNull: false,
+            allowNull: false,
             
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
             validate: {
                 isEmail: true,
             },
@@ -51,7 +54,7 @@ User.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'user',
+        modelName: "User",
     }
 );
 
