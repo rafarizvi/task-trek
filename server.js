@@ -5,8 +5,9 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 const authRouter = require('./controllers/api/userRoutes');
-// const passport = require('passport');
+const passport = require('passport');
 const taskRoutes = require('./controllers/api/taskRoutes');
+
 
 // const fs = require('fs').promises;
 
@@ -22,9 +23,9 @@ const sess = {
     secret: process.env.SECRET,
     cookie: {
         maxAge: 300000,
-        httpOnly: true,
-        secure: false,
-        sameSite: 'strict',
+        httpOnly: false,
+        secure: true,
+        sameSite: 'lax',
     },
     resave: false,
     saveUninitialized: true,
@@ -46,10 +47,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-
 app.use(session(sess));
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 app.use(routes);
