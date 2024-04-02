@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Task, User } = require('../models');
-const withAuth = require('../utils/auth');
+const withAuth = require('../utils/auth')
 
 
 router.get('/add-task', async (req, res) => {
