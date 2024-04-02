@@ -33,10 +33,4 @@ module.exports = {
 //   }
 // }
 
-<<<<<<< HEAD
-
-
-module.exports = { appendTaskToFile };
-=======
 // module.exports = { appendTaskToFile }
->>>>>>> c310490b99d31da4dbea74718cabca6c9e5b6224
