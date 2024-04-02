@@ -1,35 +1,50 @@
-
-
-    <nav>
-        <h4>Log in</h4>
-        <div class="container mt-4">
-            <div class="card" style="width: 18rem;">
-                <div class="card-header">Log In</div>
-                <div class="card-body">
-                    <form action="/api/users/login" method="POST">
-                        <div class="mb-3">
-                            <label for="email-login" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email-login" name="email">
+<nav>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-4">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title has-text-centered">
+                                Log In
+                            </p>
+                        </header>
+                        <div class="card-content">
+                            <div class="content">
+                                <div class="has-text-centered">
+                                    <form action="/api/users/login" method="POST">
+                                        <div class="field">
+                                            <label class="label" for="email">Email</label>
+                                            <div class="control">
+                                                <input class="input" type="email" id="email" name="email" required>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <label class="label" for="password">Password</label>
+                                            <div class="control">
+                                                <input class="input" type="password" id="password" name="password"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="control">
+                                                <button class="button is-primary" type="submit">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div>
+                                        <p>Click to Sign up</a> if you don't
+                                            have an account.</p>
+                                            <button class="button is-primary" onclick="window.location.href='register'">Sign Up</button>
+                                    </div>
+                                    <p>Or sign in using:</p>
+                                    <button class="button is-info">Google</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="password-login" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password-login" name="password" autocomplete="current-password">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-        <ul>
-            <P>Click register if you don't have an account.</P>
-            <li><a href="/register">Register</a></li>
-        </ul>
-        <h1>Or sign in Using </h1>
-        <ul>
-            <a class="button google" href="/login/federated/google">Sign in with Google</a>
-        </ul>
-    </nav>
-    
-    <script src="/public/js/login.js"></script>
-
-
+    </section>
+</nav>

@@ -3,7 +3,7 @@ const router = require('express').Router();
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oidc');
 const registerRoute = require('./registerRoute');
-// const db = require('../../config/connection')
+const db = require('../../config/connection')
 router.post('/register', registerRoute.registerUser);
 
 passport.use(new GoogleStrategy({
@@ -90,14 +90,12 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    console.log(req.body)
+    console.log(req.body);
     const userData = await User.findOne({ where: { email: req.body.email } });
 
-    if (!userData || !(await userData.checkPassword(req.body.password)
-    )) {
+    if (!userData || !(await userData.checkPassword(req.body.password))) {
       return res.status(400).json({ message: 'Incorrect email or password, please try again' });
     }
-
 
     req.session.save(() => {
       req.session.user_id = userData.id;

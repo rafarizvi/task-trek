@@ -1,25 +1,54 @@
-<div class="container mt-4">
-    <div class="card" style="width: 18rem;">
-        <div class="card-header">Register</div>
-        <div class="card-body">
-            <form action="/api/users/register" method="POST">
-                <div class="mb-3">
-                    <label for="username-reg" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username-reg" name="username">
+<nav>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-4">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title has-text-centered">
+                                Register
+                            </p>
+                        </header>
+                        <div class="card-content">
+                            <div class="content">
+                                <div class="has-text-centered">
+                                    <form action="/api/users/register" method="POST">
+                                        <div class="field">
+                                            <label class="label" for="username-reg">Username</label>
+                                            <div class="control">
+                                                <input class="input" type="text" id="username-reg" name="username" required>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <label class="label" for="email-reg">Email</label>
+                                            <div class="control">
+                                                <input class="input" type="email" id="email-reg" name="email" required>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <label class="label" for="password-reg">Password</label>
+                                            <div class="control">
+                                                <input class="input" type="password" id="password-reg" name="password" required>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="control">
+                                                <button class="button is-primary" type="submit">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div>
+                                        <p>Already have an account? <a href="/login">Log in</a>.</p>
+                                    </div>
+                                    <p>Or sign up using:</p>
+                                    <button class="button is-info">Google</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="email-reg" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email-reg" name="email">
-                </div>
-                <div class="mb-3">
-                    <label for="password-reg" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password-reg" name="password">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            </div>
         </div>
-    </div>
-</div>
-
+    </section>
+</nav>
 <script src="../public/js/register.js"></script>
