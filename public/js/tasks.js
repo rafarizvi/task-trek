@@ -1,11 +1,10 @@
-
 // const updateForm = async (event) => {
 //     event.preventDefault();
-  
+
 //     const description = document.querySelector('#task-description').value.trim();
 //     const title = document.querySelector('#task-title').value.trim();
 //     const status = document.querySelector('#task-status').value.trim();
-  
+
 //     if (status && title && description) {
 //       const response = await fetch(`/api/tasks/:id`, {
 //         method: 'GET',
@@ -14,7 +13,7 @@
 //           'Content-Type': 'application/json',
 //         },
 //       });
-  
+
 //       if (response.ok) {
 //         document.location.reload();
 //       } else {
@@ -24,101 +23,107 @@
 //   };
 
 // Add an event listener to the form submission
-document.getElementById('addTaskForm').addEventListener('submit', async function(event) {
-  event.preventDefault(); // Prevent the default form submission behavior
+document
+    .getElementById("addTaskForm")
+    .addEventListener("submit", async function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
 
-  // Extract task details from the form
-  const title = document.querySelector('input[name="title"]').value.trim();
-  const description = document.querySelector('textarea[name="description"]').value.trim();
+        // Extract task details from the form
+        const title = document.querySelector('input[name="title"]').value.trim();
+        const description = document
+            .querySelector('textarea[name="description"]')
+            .value.trim();
 
-  try {
-      // Send a POST request to the server to add the new task
-      const response = await fetch('/api/tasks', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ title, description })
-      });
+        try {
+            // Send a POST request to the server to add the new task
+            const response = await fetch("/api/tasks", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ title, description }),
+            });
 
-      if (response.ok) {
-          // If the task was added successfully, reload the tasks on the page
-          document.location.reload();
-      } else {
-          // If there was an error, display an error message
-          const responseData = await response.json();
-          alert(responseData.message);
-      }
-  } catch (error) {
-      console.error('Error adding task:', error);
-      alert('An error occurred while adding the task.');
-  }
-});
+            if (response.ok) {
+                // If the task was added successfully, reload the tasks on the page
+                document.location.reload();
+            } else {
+                // If there was an error, display an error message
+                const responseData = await response.json();
+                alert(responseData.message);
+            }
+        } catch (error) {
+            console.error("Error adding task:", error);
+            alert("An error occurred while adding the task.");
+        }
+    });
 
 const updateButton = async (event) => {
-  event.preventDefault();
+    event.preventDefault();
 
-  const taskBox = event.target.closest('.box');
-  const taskId = taskBox.dataset.taskId;
+    const taskBox = event.target.closest(".box");
+    const taskId = taskBox.dataset.taskId;
 
-  const description = taskBox.querySelector('.description')
-  const title = taskBox.querySelector('.title')
-  const status = taskBox.querySelector('.status')
+    const description = taskBox.querySelector(".description");
+    const title = taskBox.querySelector(".title");
+    const status = taskBox.querySelector(".status");
 
-  if (status && title && description) {
-      const response = await fetch(`/api/tasks/${taskId}`, {
-          method: 'PUT',
-          body: JSON.stringify({ title, status, description }),
-          headers: {
-              'Content-Type': 'application/json',
-          },
-      });
+    if (status && title && description) {
+        const response = await fetch(`/api/tasks/${taskId}`, {
+            method: "PUT",
+            body: JSON.stringify({ title, status, description }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
 
-      if (response.ok) {
-          document.location.reload();
-      } else {
-          alert('Failed to update task');
-      }
-  }
+        if (response.ok) {
+            document.location.reload();
+        } else {
+            alert("Failed to update task");
+        }
+    }
 };
 
 const delButtonHandler = async (event) => {
-  const taskBox = event.target.closest('.box');
-  const taskId = taskBox.dataset.taskId;
+    const taskBox = event.target.closest(".box");
+    const taskId = taskBox.dataset.taskId;
 
-  // Show confirmation dialog
-  const confirmed = window.confirm('Are you sure you want to delete this task?');
+    // Show confirmation dialog
+    const confirmed = window.confirm(
+        "Are you sure you want to delete this task?"
+    );
 
-  if (confirmed) {
-      // User clicked OK, proceed with deletion
-      const response = await fetch(`/api/tasks/${taskId}`, {
-          method: 'DELETE',
-      });
+    if (confirmed) {
+        // User clicked OK, proceed with deletion
+        const response = await fetch(`/api/tasks/${taskId}`, {
+            method: "DELETE",
+        });
 
-      if (response.ok) {
-          taskBox.remove(); // Remove the task box from the DOM
-      } else {
-          alert('Failed to delete task');
-      }
-  } else {
-      // User clicked Cancel, do nothing
-      return;
-  }
+        if (response.ok) {
+            taskBox.remove(); // Remove the task box from the DOM
+        } else {
+            alert("Failed to delete task");
+        }
+    } else {
+        // User clicked Cancel, do nothing
+        return;
+    }
 };
 
-  document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     // Attach event listener for update button
-    const updateButtons = document.querySelectorAll('.update-status-button');
-    updateButtons.forEach(button => {
-      button.addEventListener('click', updateButton);
+    const updateButtons = document.querySelectorAll(".update-status-button");
+    updateButtons.forEach((button) => {
+        button.addEventListener("click", updateButton);
     });
-  
+
     // Attach event listener for delete button
-    const deleteButtons = document.querySelectorAll('.delete-task');
-    deleteButtons.forEach(button => {
-      button.addEventListener('click', delButtonHandler);
+    const deleteButtons = document.querySelectorAll(".delete-task");
+    deleteButtons.forEach((button) => {
+        button.addEventListener("click", delButtonHandler);
     });
-  });
+});
 
 // document.addEventListener('DOMContentLoaded', async () => {
 //     const taskList = document.getElementById('taskList');
@@ -127,11 +132,11 @@ const delButtonHandler = async (event) => {
 //         try {
 //             const response = await fetch('/api/tasks');
 //             console.log('Response from server:', response);
-    
+
 //             if (!response.ok) {
 //                 throw new Error('Failed to fetch tasks');
 //             }
-    
+
 //             const tasks = await response.json();
 //             console.log('Tasks received:', tasks);
 
