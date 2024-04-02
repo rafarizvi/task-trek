@@ -1,7 +1,7 @@
 {{#if logged_in}}
 <h1 class="task-status">Pending Tasks</h1>
 <div class="card task-card">
-<table class="table is-bordered is-striped is-hoverable is-fullwidth pending-table">
+<table class="table is-bordered is-striped is-hoverable is-fullwidth">
     <thead>
         <tr class="is-info">
             <th>Id</th>
@@ -18,7 +18,7 @@
     {{#ifEquals status "pending"}}
 
     <tbody>
-        <tr class="taskList">
+        <tr class="taskList pending-table">
             <th>{{id}}</th>
             <td>{{title}}</td>
             <td>{{description}}</td>
