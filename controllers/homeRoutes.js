@@ -2,7 +2,67 @@ const router = require('express').Router();
 const { Task, User } = require('../models');
 const withAuth = require('../utils/auth');
 
+// route for pending tasks
+router.get('/pending', withAuth, async (req, res) => {
+  try {
+      const tasks = await Task.findAll({
+          where: { user_id: req.session.user_id },
+          include: [{ model: User, attributes: ['username'] }]
+      });
 
+      const tasksPlain = tasks.map(task => task.get({ plain: true }));
+
+      res.render('pending', {
+          tasks: tasksPlain,
+          logged_in: req.session.logged_in
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).render('error', { error: err });
+  }
+});
+
+
+// route for inprogress tasks
+router.get('/inprogress', withAuth, async (req, res) => {
+  try {
+      const tasks = await Task.findAll({
+          where: { user_id: req.session.user_id },
+          include: [{ model: User, attributes: ['username'] }]
+      });
+
+      const tasksPlain = tasks.map(task => task.get({ plain: true }));
+
+      res.render('inprogress', {
+          tasks: tasksPlain,
+          logged_in: req.session.logged_in
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).render('error', { error: err });
+  }
+});
+
+
+// route for completed tasks
+router.get('/completed', withAuth, async (req, res) => {
+  try {
+      const tasks = await Task.findAll({
+          where: { user_id: req.session.user_id },
+          include: [{ model: User, attributes: ['username'] }]
+      });
+
+      const tasksPlain = tasks.map(task => task.get({ plain: true }));
+
+      res.render('completed', {
+          tasks: tasksPlain,
+          logged_in: req.session.logged_in
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).render('error', { error: err });
+  }
+});
 
 
 router.get('/', withAuth, async (req, res) => {
