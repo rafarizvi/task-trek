@@ -1,3 +1,4 @@
+{{#if logged_in}}
 <h1 class="task-status">In-progress Tasks</h1>
 <div class="card task-card">
 <table class="table is-bordered is-striped is-hoverable is-fullwidth inprogress-table">
@@ -32,7 +33,10 @@
 
     {{/ifEquals}}
     {{/each}}
-
 </table>
 
+{{else}}
+<h1>Please log in to view your tasks.</h1>
+{{/if}}
+<script src="/js/remove-tasks.js"></script>
 </div>
