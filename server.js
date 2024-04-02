@@ -8,7 +8,7 @@ const authRouter = require('./controllers/api/userRoutes');
 const passport = require('passport');
 const taskRoutes = require('./controllers/api/taskRoutes');
 
-// const fs = require('fs').promises;
+const fs = require('fs').promises;
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -32,6 +32,7 @@ const sess = {
         db: sequelize
     })
 };
+
 
 
 app.engine('handlebars', hbs.engine);

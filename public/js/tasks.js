@@ -1,126 +1,120 @@
-const updateForm = async (event) => {
-    event.preventDefault();
 
-    const description = document.querySelector("#task-description").value.trim();
-    const title = document.querySelector("#task-title").value.trim();
-    const status = document.querySelector("#task-status").value.trim();
-
-    if (status && title && description) {
-        const response = await fetch(`/api/tasks/:id`, {
-            method: "GET",
-            body: JSON.stringify({ title, status, description }),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        if (response.ok) {
-            document.location.reload();
-        } else {
-            alert("Failed to create project");
-        }
-    }
-};
-
-// Add an event listener to the form submission
-// document.getElementById("addTaskForm")
-// .addEventListener("submit", async function (event) {
-//         event.preventDefault(); // Prevent the default form submission behavior
-
-//         // Extract task details from the form
-//         const title = document.querySelector('input[name="title"]').value.trim();
-//         const description = document
-//             .querySelector('textarea[name="description"]')
-//             .value.trim();
-
-//         try {
-//             // Send a POST request to the server to add the new task
-//             const response = await fetch("/api/tasks", {
-//                 method: "POST",
-//                 headers: {
-//                     "Content-Type": "application/json",
-//                 },
-//                 body: JSON.stringify({ title, description }),
-//             });
-
-//             if (response.ok) {
-//                 // If the task was added successfully, reload the tasks on the page
-//                 document.location.reload();
-//             } else {
-//                 // If there was an error, display an error message
-//                 const responseData = await response.json();
-//                 alert(responseData.message);
-//             }
-//         } catch (error) {
-//             console.error("Error adding task:", error);
-//             alert("An error occurred while adding the task.");
-//         }
-//     });
-
-const updateButton = async (event) => {
-    event.preventDefault();
-
-    const taskBox = event.target.closest(".box");
-    const taskId = taskBox.dataset.taskId;
-
-    const description = taskBox.querySelector(".description");
-    const title = taskBox.querySelector(".title");
-    const status = taskBox.querySelector(".status");
-
-    if (status && title && description) {
-        const response = await fetch(`/api/tasks/${taskId}`, {
-            method: "PUT",
-            body: JSON.stringify({ title, status, description }),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        if (response.ok) {
-            document.location.reload();
-        } else {
-            alert("Failed to update task");
-        }
-    }
-};
 
 const delButtonHandler = async (event) => {
     const taskBox = event.target.closest(".box");
     const taskId = taskBox.dataset.taskId;
 
-    // Show confirmation dialog
-    const confirmed = window.confirm(
-        "Are you sure you want to delete this task?"
-    );
+    const confirmed = window.confirm("Are you sure you want to delete this task?");
 
     if (confirmed) {
-        // User clicked OK, proceed with deletion
-        const response = await fetch(`/api/tasks/${taskId}`, {
-            method: "DELETE",
-        });
+    
+        try {
+            const response = await fetch(`/api/tasks/${taskId}`, {
+                method: "DELETE",
+            });
 
-        if (response.ok) {
-            taskBox.remove(); // Remove the task box from the DOM
-        } else {
-            alert("Failed to delete task");
+            if (response.ok) {
+                taskBox.remove(); 
+            } else {
+                alert("Failed to delete task");
+            }
+        } catch (error) {
+            console.error("Error deleting task:", error);
+            alert("An error occurred while deleting the task");
         }
-    } else {
-        // User clicked Cancel, do nothing
-        return;
     }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Attach event listener for update button
-    const updateButtons = document.querySelectorAll(".update-status-button");
-    updateButtons.forEach((button) => {
-        button.addEventListener("click", updateButton);
-    });
 
-    // Attach event listener for delete button
+const updateFormHandler = async (event) => {
+    event.preventDefault(); 
+
+    const form = event.currentTarget;
+    const taskBox = form.closest(".box");
+    const taskId = taskBox.dataset.taskId;
+
+    const statusSelect = form.querySelector("select");
+    const selectedStatus = statusSelect.value;
+
+    if (selectedStatus) {
+        try {
+            const response = await fetch(`/api/tasks/${taskId}`, {
+                method: "PUT",
+                body: JSON.stringify({ status: selectedStatus }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (response.ok) {
+            
+                const taskStatusElement = taskBox.querySelector(".task-status");
+                taskStatusElement.textContent = selectedStatus;
+            } else {
+                alert("Failed to update task");
+            }
+        } catch (error) {
+            console.error("Error updating task:", error);
+            alert("An error occurred while updating the task");
+        }
+    }
+};
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
     const deleteButtons = document.querySelectorAll(".delete-task");
     deleteButtons.forEach((button) => {
         button.addEventListener("click", delButtonHandler);
     });
+
+    
+    const updateForms = document.querySelectorAll(".update-status form");
+    updateForms.forEach((form) => {
+        form.addEventListener("submit", updateFormHandler);
+    });
 });
+
+
+document.getElementById("showFormBtn").addEventListener("click", () => {
+    document.getElementById("taskFormContainer").style.display = "block";
+});
+
+
+document.getElementById("cancelBtn").addEventListener("click", () => {
+    document.getElementById("taskFormContainer").style.display = "none";
+});
+
+
+document.getElementById("addTaskForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+
+    const title = document.querySelector('input[name="title"]').value.trim();
+    const description = document.querySelector('textarea[name="description"]').value.trim();
+
+    try {
+
+        const response = await fetch("/api/tasks", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ title, description }),
+        });
+
+        if (response.ok) {
+            
+            document.location.reload();
+        } else {
+        
+            const responseData = await response.json();
+            alert(responseData.message);
+        }
+    } catch (error) {
+        console.error("Error adding task:", error);
+        alert("An error occurred while adding the task.");
+    }
+});
+
 
