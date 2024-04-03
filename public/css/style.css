@@ -141,3 +141,7 @@ h4 {
 .pending-table {
     background-color: rgb(198, 231, 255);
 }
+
+.homeBtns {
+    padding-bottom: 1.5%;
+}
