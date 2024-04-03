@@ -1,0 +1,42 @@
+{{#if logged_in}}
+<h1 class="task-status">All Tasks</h1>
+<div class="card task-card">
+<table class="table is-bordered is-striped is-hoverable is-fullwidth">
+    <thead>
+        <tr class="is-info">
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Start date</th>
+            <th>Due date</th>
+            <th>Priority</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    {{#each tasks as |task| }}
+
+    <tbody>
+        <tr class="taskList pending-table">
+            <th>{{id}}</th>
+            <td>{{title}}</td>
+            <td>{{description}}</td>
+            <td>{{format_date start_date}}</td>
+            <td>{{format_date due_date}}</td>
+            <td>{{priority}}</td>
+            <td>{{status}}</td>
+            <td><button class="delete-task button is-danger is-small is-rounded" id="{{id}}">remove</button>
+</td>
+
+        </tr>
+    </tbody>
+
+    {{/each}}
+
+</table>
+
+{{else}}
+<h1>Please log in to view your tasks.</h1>
+{{/if}}
+<script src="/js/remove-tasks.js"></script>
+</div>

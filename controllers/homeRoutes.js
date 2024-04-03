@@ -2,6 +2,27 @@ const router = require('express').Router();
 const { Task, User } = require('../models');
 const withAuth = require('../utils/auth')
 
+
+// route for all tasks
+router.get('/all', withAuth, async (req, res) => {
+  try {
+      const tasks = await Task.findAll({
+          where: { user_id: req.session.user_id },
+          include: [{ model: User, attributes: ['username'] }]
+      });
+
+      const tasksPlain = tasks.map(task => task.get({ plain: true }));
+
+      res.render('alltasks', {
+          tasks: tasksPlain,
+          logged_in: req.session.logged_in
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).render('error', { error: err });
+  }
+});
+
 // route for pending tasks
 router.get('/pending', withAuth, async (req, res) => {
   try {
