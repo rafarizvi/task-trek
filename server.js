@@ -59,3 +59,4 @@ app.use('/', authRouter);
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log('🔥🔥🔥!(ON)'));
 });
+
