@@ -30,28 +30,38 @@
     </div>
 
     <div class="tasks-list">
-      {{#each tasks}}
-        <div class="box mt-5" data-task-id="{{this.id}}">
-          <h2 class="title is-3">{{this.title}}</h2>
-          <p>Status: <span class="task-status">{{this.status}}</span></p>
-          <p>Priority: {{this.priority}}</p>
-          <p>Start Date: {{format_date this.start_date}}</p>
-          <p>Due Date: {{format_date this.due_date}}</p>
-          <p>Description: {{this.description}}</p>
-          <div class="update-status">
-            <form action="/api/tasks/{{this.id}}" method="POST">
-              <label for="status-select-{{this.id}}">Update Status:</label>
-              <select id="status-select-{{this.id}}" name="status">
-                <option value="pending">Pending</option>
-                <option value="in progress">In Progress</option>
-                <option value="completed">Completed</option>
-              </select>
-              <button class="update-status-button button is-link" type="submit">Update</button>
-            </form>
-          </div>
-          <button class="delete-task button is-danger">Delete</button>
-        </div>
-      {{/each}}
+{{#each tasks}}
+<div class="box mt-5" data-task-id="{{this.id}}">
+    <h2 class="title is-3">{{this.title}}</h2>
+    <p>Status: <span class="task-status">{{this.status}}</span></p>
+    <p>Priority: {{this.priority}}</p>
+    <p>Start Date: {{format_date this.start_date}}</p>
+    <p>Due Date: {{format_date this.due_date}}</p>
+    <p>Description: {{this.description}}</p>
+    <div class="update-status">
+       <form action="/api/tasks/{{this.id}}" method="POST" class="update-status-form">
+    <label for="status-select-{{this.id}}">Update Status:</label>
+    <select id="status-select-{{this.id}}" name="status">
+        <option value="pending">Pending</option>
+        <option value="in progress">In Progress</option>
+        <option value="completed">Completed</option>
+    </select>
+    <button class="update-status-button button is-link" type="submit">Update Status</button>
+</form>
+
+<form action="/api/tasks/{{this.id}}" method="POST" class="update-priority-form">
+    <label for="priority-select-{{this.id}}">Update Priority:</label>
+    <select id="priority-select-{{this.id}}" name="priority">
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+    </select>
+    
+</form>
+    </div>
+    <button class="delete-task button is-danger">Delete</button>
+</div>
+{{/each}}
     </div>
   </div>
 {{/if}}
