@@ -74,7 +74,7 @@ router.get('/oauth2/redirect/google', passport.authenticate('google', {
 
 
 
-router.post('/register', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
@@ -122,3 +122,4 @@ router.post('/logout', (req, res) => {
 
 
 module.exports = router;
+

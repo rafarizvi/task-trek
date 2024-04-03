@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
 
 const sess = {
-    secret: process.env.SECRET,
+    secret: 'Super secret secret',
     cookie: {
         maxAge: 300000,
         httpOnly: true,
@@ -38,10 +38,14 @@ const sess = {
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+// Handlebar helper.
+hbs.handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session(sess));
 app.use(passport.initialize());
@@ -51,10 +55,6 @@ app.use(passport.session());
 
 app.use(routes);
 app.use('/', authRouter);
-app.use('/api/tasks', taskRoutes);
-
-
-
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log('🔥🔥🔥!(ON)'));
