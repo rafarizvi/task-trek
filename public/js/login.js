@@ -30,3 +30,6 @@ const loginFormHandler = async (event) => {
 };
 
 document.querySelector('form').addEventListener('submit', loginFormHandler);
+const googleButton = document.getElementById("google-login-button");
+
+// Attach an event listener to handle the click event

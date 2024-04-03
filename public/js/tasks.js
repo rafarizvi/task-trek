@@ -27,29 +27,38 @@ const delButtonHandler = async (event) => {
 
 
 const updateFormHandler = async (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
+    event.stopPropagation();
 
     const form = event.currentTarget;
     const taskBox = form.closest(".box");
     const taskId = taskBox.dataset.taskId;
 
-    const statusSelect = form.querySelector("select");
+    const statusSelect = form.querySelector("select[name='status']");
     const selectedStatus = statusSelect.value;
 
-    if (selectedStatus) {
+    const prioritySelect = form.querySelector("select[name='priority']");
+    const selectedPriority = prioritySelect.value;
+
+    if (selectedStatus || selectedPriority) {
         try {
             const response = await fetch(`/api/tasks/${taskId}`, {
                 method: "PUT",
-                body: JSON.stringify({ status: selectedStatus }),
+                body: JSON.stringify({ status: selectedStatus, priority: selectedPriority }),
                 headers: {
                     "Content-Type": "application/json",
                 },
             });
 
             if (response.ok) {
-            
                 const taskStatusElement = taskBox.querySelector(".task-status");
                 taskStatusElement.textContent = selectedStatus;
+
+                // Update UI for priority if needed
+                console.log("Status updated successfully");
+
+                // Refresh the priority (assuming it's not updated dynamically)
+                location.reload(); // This will refresh the page to reflect the updated priority
             } else {
                 alert("Failed to update task");
             }
@@ -57,8 +66,11 @@ const updateFormHandler = async (event) => {
             console.error("Error updating task:", error);
             alert("An error occurred while updating the task");
         }
+    } else {
+        alert("Please select either a status or a priority to update");
     }
 };
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -69,10 +81,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     
-    const updateForms = document.querySelectorAll(".update-status form");
+    const updateForms = document.querySelectorAll(".update-status");
     updateForms.forEach((form) => {
         form.addEventListener("submit", updateFormHandler);
     });
+
+    
 });
 
 
