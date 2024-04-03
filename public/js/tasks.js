@@ -1,5 +1,4 @@
 
-
 const delButtonHandler = async (event) => {
     const taskBox = event.target.closest(".box");
     const taskId = taskBox.dataset.taskId;
@@ -86,12 +85,17 @@ document.getElementById("cancelBtn").addEventListener("click", () => {
 });
 
 
+
 document.getElementById("addTaskForm").addEventListener("submit", async (event) => {
     event.preventDefault();
 
 
+    const start_date = document.querySelector('#start-date').value.trim();
+    const due_date = document.querySelector('#due-date').value.trim();
+   
     const title = document.querySelector('input[name="title"]').value.trim();
     const description = document.querySelector('textarea[name="description"]').value.trim();
+
 
     try {
 
@@ -100,7 +104,7 @@ document.getElementById("addTaskForm").addEventListener("submit", async (event) 
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ title, description }),
+            body: JSON.stringify({ title, description, start_date, due_date}),
         });
 
         if (response.ok) {

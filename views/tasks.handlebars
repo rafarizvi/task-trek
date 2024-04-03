@@ -1,7 +1,7 @@
 {{#if logged_in}}
   <div class="tasks-container">
     <div class="modal-content">
-      <button id="showFormBtn" class="button is-primary">Add New Task</button>
+      <button id="showFormBtn" class="button is-primary is-rounded">Add New Task</button>
       <div class="box" id="taskFormContainer" style="display: none;">
         <h2 class="title is-4">New Task</h2>
         <form id="addTaskForm">
@@ -17,12 +17,16 @@
               <textarea class="textarea" name="description" placeholder="Enter task description" required></textarea>
             </div>
           </div>
+          <div class="date">
+            <p>Start date: <input type="text" class="datepicker" id="start-date"></p>
+            <p>Due date: <input type="text" class="datepicker" id="due-date"></p>
+          </div>
           <div class="field is-grouped">
             <div class="control">
-              <button id="addBtn" class="button is-primary" type="submit">Add Task</button>
+              <button id="addBtn" class="button is-primary is-rounded" type="submit">Add Task</button>
             </div>
             <div class="control">
-              <button id="cancelBtn" class="button is-danger" type="button">Cancel</button>
+              <button id="cancelBtn" class="button is-danger is-rounded" type="button">Cancel</button>
             </div>
           </div>
         </form>
@@ -46,10 +50,10 @@
                 <option value="in progress">In Progress</option>
                 <option value="completed">Completed</option>
               </select>
-              <button class="update-status-button button is-link" type="submit">Update</button>
+              <button class="update-status-button button is-link is-rounded" type="submit">Update</button>
             </form>
           </div>
-          <button class="delete-task button is-danger">Delete</button>
+          <button class="delete-task button is-danger is-rounded">Delete</button>
         </div>
       {{/each}}
     </div>

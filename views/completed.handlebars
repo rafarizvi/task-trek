@@ -1,7 +1,7 @@
 {{#if logged_in}}
 <h1 class="task-status">Completed Tasks</h1>
 <div class="card task-card">
-<table class="table is-bordered is-striped is-hoverable is-fullwidth completed-table">
+<table class="table is-bordered is-striped is-hoverable is-fullwidth">
     <thead>
         <tr class="is-success">
             <th>Id</th>
@@ -18,7 +18,7 @@
     {{#ifEquals status "completed"}}
 
     <tbody>
-        <tr class="taskList">
+        <tr class="taskList completed-table">
             <th>{{id}}</th>
             <td>{{title}}</td>
             <td>{{description}}</td>

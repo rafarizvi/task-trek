@@ -145,3 +145,13 @@ h4 {
 .homeBtns {
     padding-bottom: 1.5%;
 }
+
+.date {
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.date p {
+    font-weight: bold;
+}
