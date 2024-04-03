@@ -35,8 +35,8 @@
           <h2 class="title is-3">{{this.title}}</h2>
           <p>Status: <span class="task-status">{{this.status}}</span></p>
           <p>Priority: {{this.priority}}</p>
-          <p>Start Date: {{this.start_date}}</p>
-          <p>Due Date: {{this.due_date}}</p>
+          <p>Start Date: {{format_date this.start_date}}</p>
+          <p>Due Date: {{format_date this.due_date}}</p>
           <p>Description: {{this.description}}</p>
           <div class="update-status">
             <form action="/api/tasks/{{this.id}}" method="POST">
