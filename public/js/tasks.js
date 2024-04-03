@@ -54,11 +54,11 @@ const updateFormHandler = async (event) => {
                 const taskStatusElement = taskBox.querySelector(".task-status");
                 taskStatusElement.textContent = selectedStatus;
 
-                // Update UI for priority if needed
+                
                 console.log("Status updated successfully");
 
-                // Refresh the priority (assuming it's not updated dynamically)
-                location.reload(); // This will refresh the page to reflect the updated priority
+                
+                location.reload(); 
             } else {
                 alert("Failed to update task");
             }
