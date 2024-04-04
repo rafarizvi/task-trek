@@ -28,7 +28,3 @@ const loginFormHandler = async (event) => {
     alert('Please enter both email and password.');
   }
 };
-
-
-
-

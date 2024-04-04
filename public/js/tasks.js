@@ -134,5 +134,3 @@ document.getElementById("addTaskForm").addEventListener("submit", async (event) 
         alert("An error occurred while adding the task.");
     }
 });
-
-
