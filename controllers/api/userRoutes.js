@@ -2,15 +2,14 @@ const { User } = require('../../models');
 const router = require('express').Router();
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oidc');
-require('dotenv').config();
-// const registerRoute = require('./registerRoute');
-// router.post('/register', registerRoute.registerUser);
+const registerRoute = require('./registerRoute');
+const db = require('../../config/connection')
+router.post('/register', registerRoute.registerUser);
 
 passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_CLIENT_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  clientID: process.env['GOOGLE_CLIENT_ID'],
+  clientSecret: process.env['GOOGLE_CLIENT_SECRET'],
   callbackURL: '/oauth2/redirect/google',
-  passReqToCallback: true,
   scope: ['profile']
 }, function verify(issuer, profile, cb) {
   db.get('SELECT * FROM federated_credentials WHERE provider = ? AND subject = ?', [
@@ -62,6 +61,7 @@ passport.deserializeUser(function (user, cb) {
 
 router.get('/login', function (req, res, next) {
   res.render('login');
+
 });
 
 router.get('/login/federated/google', passport.authenticate('google'));
@@ -70,6 +70,7 @@ router.get('/oauth2/redirect/google', passport.authenticate('google', {
   successRedirect: '/',
   failureRedirect: '/login'
 }));
+
 
 
 
@@ -93,7 +94,6 @@ router.post('/login', async (req, res) => {
     const userData = await User.findOne({ where: { email: req.body.email } });
 
     if (!userData || !(await userData.checkPassword(req.body.password))) {
-      console.log("User login failed. Rendering error401.handlebars with message.");
       return res.status(401).render('error401', {
         message: 'Incorrect email or password, please try again'
       });
