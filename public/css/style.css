@@ -152,9 +152,7 @@ h4 {
     font-weight: bold;
 }
 
-.display-card {
 
-}
 
 
 .field.is-grouped {
@@ -164,37 +162,6 @@ h4 {
 }
 
 
-.rainbow-effect {
-    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
-
-    transition: background-color 0.5s ease;
-  }
-  
-  .rainbow-effect:hover {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-  
-  .rainbow-effect .icon {
-    color: black; /* Initial color for the icon */
-  }
-  
-  .rainbow-effect:hover .icon {
-    color: green; /* Icon color on hover */
-  }
-  
-  /* Additional styling for the container to center the button, if needed */
-  .cntr.homeBtns {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-
-
-  .title:not(.is-spaced):has(+.subtitle) {
-    margin-bottom: 43px;
-}
 
 
 .ibm-plex sans-light {
@@ -243,23 +210,22 @@ h4 {
 /* Vendor-prefixed for WebKit browsers like Chrome and Safari */
 @-webkit-keyframes glow {
     from {
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e5d7de, 0 0 40px #fdf6f9, 0 0 50px #f9f6f8, 0 0 60px #e60073, 0 0 70px #e60073;
+      text-shadow: 0 0 8px #ddd, 0 0 12px #ccc, 0 0 16px #bbb, 0 0 20px #aaa, 0 0 24px #999, 0 0 28px #888, 0 0 32px #777;
     }
     
     to {
-      text-shadow: 0 0 20px #fff, 0 0 30px #eee6ea, 0 0 40px #dfd6db, 0 0 50px #d2d1d1, 0 0 60px #e7dce1, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+      text-shadow: 0 0 10px #ccc, 0 0 15px #bbb, 0 0 20px #aaa, 0 0 25px #999, 0 0 30px #888, 0 0 35px #777, 0 0 40px #666;
     }
   }
   
-  /* Standard rule for all browsers */
   @keyframes glow {
     from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e5d7de, 0 0 40px #fdf6f9, 0 0 50px #f9f6f8, 0 0 60px #e60073, 0 0 70px #e60073;
-      }
-      
-      to {
-        text-shadow: 0 0 20px #fff, 0 0 30px #eee6ea, 0 0 40px #dfd6db, 0 0 50px #d2d1d1, 0 0 60px #e7dce1, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
-      }
+      text-shadow: 0 0 8px #ddd, 0 0 12px #ccc, 0 0 16px #bbb, 0 0 20px #aaa, 0 0 24px #999, 0 0 28px #888, 0 0 32px #777;
+    }
+    
+    to {
+      text-shadow: 0 0 10px #ccc, 0 0 15px #bbb, 0 0 20px #aaa, 0 0 25px #999, 0 0 30px #888, 0 0 35px #777, 0 0 40px #666;
+    }
   }
   
 
@@ -335,3 +301,31 @@ h4 {
     font-family:sans-serif
 }
 
+.welcome-message-enhanced {
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+
+
+
+body {
+    background-color: black;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  main {
+    flex: 1;
+  }
+  
