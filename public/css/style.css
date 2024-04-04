@@ -22,10 +22,6 @@ body {
     margin-bottom: 1rem;
 }
 
-.task-status {
-    font-weight: bold;
-}
-
 .update-status {
     margin-top: 1rem;
 }
@@ -122,7 +118,7 @@ h4 {
 
 /* Task pages */
 
-.task-status {
+.task-type {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 34px;
     font-weight: bold;
@@ -144,4 +140,18 @@ h4 {
 
 .homeBtns {
     padding-bottom: 1.5%;
+}
+
+.date {
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.date p {
+    font-weight: bold;
+}
+
+.display-card {
+
 }
