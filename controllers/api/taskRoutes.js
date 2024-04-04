@@ -18,6 +18,7 @@ router.get('/', withAuth, async (req, res) => {
         res.render('tasks', {
             tasks: tasksPlain,
             logged_in: req.session.logged_in
+            
             //...tasksPlain,
             //logged_in: true
         });
