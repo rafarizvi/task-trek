@@ -1,9 +1,9 @@
 {{#if logged_in}}
-<h1 class="task-type">Completed Tasks</h1>
+<h1 class="task-type">All Tasks</h1>
 <div class="card task-card">
 <table class="table is-bordered is-striped is-hoverable is-fullwidth">
     <thead>
-        <tr class="is-success">
+        <tr class="is-infoZ">
             <th>Id</th>
             <th>Title</th>
             <th>Description</th>
@@ -15,10 +15,9 @@
     </thead>
 
     {{#each tasks as |task| }}
-    {{#ifEquals status "completed"}}
 
     <tbody>
-        <tr class="taskList completed-table">
+        <tr class="taskList pending-table">
             <th>{{id}}</th>
             <td>{{title}}</td>
             <td>{{description}}</td>
@@ -26,12 +25,14 @@
             <td>{{format_date due_date}}</td>
             <td>{{priority}}</td>
             <td>{{status}}</td>
-            <td><button id="{{id}}" class="button is-danger is-small is-rounded">remove</button></td>
+            <td><button class="delete-task button is-danger is-small is-rounded" id="{{id}}">remove</button>
+</td>
+
         </tr>
     </tbody>
 
-    {{/ifEquals}}
     {{/each}}
+
 </table>
 
 {{else}}
