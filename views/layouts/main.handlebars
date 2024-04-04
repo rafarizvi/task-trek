@@ -35,21 +35,27 @@
   <div class="navbar-end is-justify-content-flex-end">
     {{#if logged_in}}
 
-    <div class="navbar-item">
-      <div class="welcome-message"  style=" align-items: center; justify-content: center; ">
-    <p class="has-text-light ibm-plex sans-light">Welcome {{username}} 🗒</p>
+<div class="navbar-item" style="flex-grow: 1; justify-content: center; display: flex; align-items: center; ">
+  <p class="has-text-centered" style="margin: 0; font-size: 20px; color: #32CD32; font-family: 'Orbitron', sans-serif; text-shadow: 0 0 10px #32CD32, 0 0 20px #32CD32, 0 0 30px #32CD32, 0 0 40px #32CD32;">
+    Welcome, <span style="font-weight: bold; color: #00D1B2;">{{username}}</span> 🗒
+  </p>
 </div>
 
-    <a href="/">
-  <button class="button is medium is-rounded" type="button" data-bs-dismiss="modal">Home</button>
-</a>
-</div>
-    </div>
-    <div class="navbar-item">
-      <div class="buttons">
-        <button id="logout" class="button is-danger is-dark is-rounded">Logout</button>
+
+   <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-menu">
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons has-addons">
+          <a href="/" class="button is-medium is-rounded" data-bs-dismiss="modal">Home</a>
+          <a id="logout" class="button is-medium is-danger is-dark is-rounded">Logout</a>
+        </div>
       </div>
     </div>
+  </div>
+</nav>
+
+
     {{else}}
     <div class="navbar-item">
        <div class="cntr homeBtns">
