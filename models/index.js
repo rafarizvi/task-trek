@@ -1,5 +1,5 @@
-const User = require('./User');
-const Task = require('./Task');
+const User = require('./user');
+const Task = require('./task');
 
 User.hasMany(Task, {
     foreignKey: 'user_id',
