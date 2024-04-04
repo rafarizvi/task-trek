@@ -3,26 +3,41 @@ const { Task, User } = require('../models');
 const withAuth = require('../utils/auth')
 
 
-// route for all tasks
-router.get('/all', withAuth, async (req, res) => {
+router.use(async (req, res, next) => {
   try {
-      const tasks = await Task.findAll({
-          where: { user_id: req.session.user_id },
-          include: [{ model: User, attributes: ['username'] }]
+    if (req.session.user_id) {
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: ['username'],
       });
-
-      const tasksPlain = tasks.map(task => task.get({ plain: true }));
-
-      res.render('alltasks', {
-          tasks: tasksPlain,
-          logged_in: req.session.logged_in
-      });
+      res.locals.username = userData.username;
+    }
+    next();
   } catch (err) {
-      console.error(err);
-      res.status(500).render('error', { error: err });
+    console.error(err);
+    res.status(500).render('error', { error: err });
   }
 });
 
+// Route for all tasks
+router.get('/all', withAuth, async (req, res) => {
+  try {
+    const tasks = await Task.findAll({
+      where: { user_id: req.session.user_id },
+      include: [{ model: User, attributes: ['username'] }]
+    });
+
+    const tasksPlain = tasks.map(task => task.get({ plain: true }));
+
+    res.render('alltasks', {
+      tasks: tasksPlain,
+      logged_in: req.session.logged_in,
+      username: res.locals.username
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).render('error', { error: err });
+  }
+});
 // route for pending tasks
 router.get('/pending', withAuth, async (req, res) => {
   try {
@@ -36,6 +51,7 @@ router.get('/pending', withAuth, async (req, res) => {
       res.render('pending', {
           tasks: tasksPlain,
           logged_in: req.session.logged_in
+          
       });
   } catch (err) {
       console.error(err);
@@ -94,6 +110,7 @@ router.get('/', withAuth, async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
+    console.log(user)
 
     res.render('homepage', {
       ...user,

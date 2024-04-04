@@ -1,33 +1,37 @@
 {{#if logged_in}}
-  <div class="tasks-container">
-    <div class="modal-content">
-      <button id="showFormBtn" class="button is-primary">Add New Task</button>
-      <div class="box" id="taskFormContainer" style="display: none;">
-        <h2 class="title is-4">New Task</h2>
-        <form id="addTaskForm">
-          <div class="field">
-            <label class="label">Task Name</label>
-            <div class="control">
-              <input class="input" type="text" name="title" placeholder="Enter task name" required>
-            </div>
+<div class="tasks-container">
+  <div class="modal-content">
+    <button id="showFormBtn" class="button is-primary is-rounded">Add New Task</button>
+    <div class="box" id="taskFormContainer" style="display: none;">
+      <h2 class="title is-4">New Task</h2>
+      <form id="addTaskForm">
+        <div class="field">
+          <label class="label">Task Name</label>
+          <div class="control">
+            <input class="input" type="text" name="title" placeholder="Enter task name" required>
           </div>
-          <div class="field">
-            <label class="label">Description</label>
-            <div class="control">
-              <textarea class="textarea" name="description" placeholder="Enter task description" required></textarea>
-            </div>
+        </div>
+        <div class="field">
+          <label class="label">Description</label>
+          <div class="control">
+            <textarea maxlength="255" class="textarea" name="description" placeholder="Enter task description (max length: 255 characters)" required></textarea>
           </div>
-          <div class="field is-grouped">
-            <div class="control">
-              <button id="addBtn" class="button is-primary" type="submit">Add Task</button>
-            </div>
-            <div class="control">
-              <button id="cancelBtn" class="button is-danger" type="button">Cancel</button>
-            </div>
+        </div>
+        <div class="date">
+          <p>Start date: <input type="text" class="datepicker" id="start-date" required></p>
+          <p>Due date: <input type="text" class="datepicker" id="due-date" required></p>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <button id="addBtn" class="button is-primary is-rounded" type="submit">Add Task</button>
           </div>
-        </form>
-      </div>
+          <div class="control">
+            <button id="cancelBtn" class="button is-danger is-rounded" type="button">Cancel</button>
+          </div>
+        </div>
+      </form>
     </div>
+  </div>
 
 
 <div class="tasks-list">
