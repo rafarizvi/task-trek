@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
   <link rel="stylesheet" href="/css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
@@ -28,25 +31,28 @@
     <h1 class="navbar-item">
       <a href="/" class="title has-text-light">Task Manager</a>
     </h1>
-    <span class="navbar-burger burger has-text-light" id="nav-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </span>
   </div>
-  <div class="navbar-end">
+  <div class="navbar-end is-justify-content-flex-end">
     {{#if logged_in}}
+
     <div class="navbar-item">
-      <div class="buttons">
-        <button id="logout" class="button is-light is-rounded">Logout</button>
-      </div>
+      <div class="welcome-message"  style=" align-items: center; justify-content: center; ">
+    <p class="has-text-light ibm-plex sans-light">Welcome {{username}} 🗒</p>
+</div>
+
+    <a href="/">
+  <button class="button is medium is-rounded" type="button" data-bs-dismiss="modal">Home</button>
+</a>
+</div>
     </div>
     <div class="navbar-item">
-      <p class="has-text-light">{{username}}</p>
+      <div class="buttons">
+        <button id="logout" class="button is-danger is-dark is-rounded">Logout</button>
+      </div>
     </div>
     {{else}}
     <div class="navbar-item">
-      <button id="dark-mode-toggle" class="button is-light is-rounded">Dark Mode</button>
+       <div class="cntr homeBtns">
     </div>
     {{/if}}
   </div>
@@ -75,6 +81,7 @@
   </footer>
 
   <script id="task-template" type="text/x-handlebars-template">
+<    <!-- Your Handlebars template goes here -->>
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
