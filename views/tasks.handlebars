@@ -1,61 +1,77 @@
 {{#if logged_in}}
-<h1>My Tasks</h1>
-<div class="modal-content">
-  <div class="box">
-    <h2 class="title is-4">New Task</h2>
-    <form id="addTaskForm">
-      <div class="field">
-        <label class="label">Task Name</label>
-        <div class="control">
-          <input class="input" type="text" name="title" placeholder="Enter task name" required>
+<div class="tasks-container">
+  <div class="modal-content">
+    <button id="showFormBtn" class="button is-primary is-rounded">Add New Task</button>
+    <div class="box" id="taskFormContainer" style="display: none;">
+      <h2 class="title is-4">New Task</h2>
+      <form id="addTaskForm">
+        <div class="field">
+          <label class="label">Task Name</label>
+          <div class="control">
+            <input class="input" type="text" name="title" placeholder="Enter task name" required>
+          </div>
         </div>
-      </div>
-      <div class="field">
-        <label class="label">Description</label>
-        <div class="control">
-          <textarea class="textarea" name="description" placeholder="Enter task description" required></textarea>
+        <div class="field">
+          <label class="label">Description</label>
+          <div class="control">
+            <textarea maxlength="255" class="textarea" name="description" placeholder="Enter task description (max length: 255 characters)" required></textarea>
+          </div>
         </div>
-      </div>
-      <div class="field is-grouped">
-        <div class="control">
-          <button id="addBtn" class="button is-primary" type="submit">Add Task</button>
+        <div class="date">
+          <p>Start date: <input type="text" class="datepicker" id="start-date" required></p>
+          <p>Due date: <input type="text" class="datepicker" id="due-date" required></p>
         </div>
-        <div class="control">
-          <button class="button is-danger" type="button" data-bs-dismiss="modal">Cancel</button>
+        <div class="field is-grouped">
+          <div class="control">
+            <button id="addBtn" class="button is-primary is-rounded" type="submit">Add Task</button>
+          </div>
+          <div class="control">
+            <button id="cancelBtn" class="button is-danger is-rounded" type="button">Cancel</button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 
-   {{#each tasks}}
-    <div class="box mt-5" data-task-id="{{this.id}}">
-      <h2 class="title is-3">{{this.title}}</h2>
-      <p>Status: {{this.status}}</p>
-      <p>Priority:{{this.priority}}</p>
-      <p>Start Date:{{this.start_date}}</p>
-      <p>Due Date:{{this.due_date}}</p>
-      <p>Description: {{this.description}}</p>
-      <div class="update-status">
-        <label for="status-select-{{this.id}}">Update Status:</label>
-        <select id="status-select-{{this.id}}">
-          <option value="pending">Pending</option>
-          <option value="in_progress">In Progress</option>
-          <option value="completed">Completed</option>
-        </select>
-        <button class="update-status-button">Update</button>
+
+<div class="tasks-list">
+{{#each tasks}}
+<div class="card mt-5">
+  <div class="card-content">
+    <div class="content">
+      <div class="box" data-task-id="{{this.id}}">
+        <h2 class="title is-3">{{this.title}}</h2>
+        <p>Status: <span class="task-status">{{this.status}}</span></p>
+        <p>Priority: {{this.priority}}</p>
+        <p>Start Date: {{format_date this.start_date}}</p>
+        <p>Due Date: {{format_date this.due_date}}</p>
+        <p>Description: {{this.description}}</p>
+        <div class="update-status">
+          <form action="/api/tasks/{{this.id}}" method="POST" class="update-status-form">
+            <label for="status-select-{{this.id}}">Update Status:</label>
+            <select id="status-select-{{this.id}}" name="status">
+              <option value="pending">Pending</option>
+              <option value="in progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+            <button class="update-status-button button is-link" type="submit">Update Status</button>
+          </form>
+
+          <form action="/api/tasks/{{this.id}}" method="POST" class="update-priority-form">
+            <label for="priority-select-{{this.id}}">Update Priority:</label>
+            <select id="priority-select-{{this.id}}" name="priority">
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </form>
+        </div>
+        <button class="delete-task button is-danger">Delete</button>
       </div>
-      <button class="delete-task">Delete</button>
     </div>
-{{/each}}
-
-
-
-
-
-
+  </div>
 </div>
-
-{{else}}
-<h1>Please log in to view your tasks.</h1>
+{{/each}}
+</div>
 {{/if}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+  </div>

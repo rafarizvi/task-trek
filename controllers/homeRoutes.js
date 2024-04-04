@@ -1,115 +1,103 @@
 const router = require('express').Router();
 const { Task, User } = require('../models');
-const withAuth = require('../utils/auth');
+const withAuth = require('../utils/auth')
 
 
-router.get('/add-task', async (req, res) => {
+router.use(async (req, res, next) => {
   try {
-    // If the user is not logged in, redirect the user to the login page
-    if (!req.session.logged_in) {
-      return res.redirect('/login');
+    if (req.session.user_id) {
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: ['username'],
+      });
+      res.locals.username = userData.username;
     }
-
-    // If the user is logged in, allow them to view tasks
-    const taskData = await Task.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['username'],
-        },
-      ],
-    });
-
-    const tasks = taskData.map(task => task.get({ plain: true }));
-
-    res.render('add-task', { tasks, loggedIn: req.session.loggedIn });
+    next();
   } catch (err) {
     console.error(err);
-    res.status(500).json(err);
+    res.status(500).render('error', { error: err });
   }
 });
 
-
-// route for pending tasks
-router.get('/pending', async (req, res) => {
+// Route for all tasks
+router.get('/all', withAuth, async (req, res) => {
   try {
-    // If the user is not logged in, redirect the user to the login page
-    if (!req.session.logged_in) {
-      return res.redirect('/login');
-    }
-
-    // If the user is logged in, allow them to view tasks
-    const taskData = await Task.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['username'],
-        },
-      ],
+    const tasks = await Task.findAll({
+      where: { user_id: req.session.user_id },
+      include: [{ model: User, attributes: ['username'] }]
     });
 
-    const tasks = taskData.map(task => task.get({ plain: true }));
+    const tasksPlain = tasks.map(task => task.get({ plain: true }));
 
-    res.render('pending', { tasks, loggedIn: req.session.loggedIn });
+    res.render('alltasks', {
+      tasks: tasksPlain,
+      logged_in: req.session.logged_in,
+      username: res.locals.username
+    });
   } catch (err) {
     console.error(err);
-    res.status(500).json(err);
+    res.status(500).render('error', { error: err });
+  }
+});
+// route for pending tasks
+router.get('/pending', withAuth, async (req, res) => {
+  try {
+      const tasks = await Task.findAll({
+          where: { user_id: req.session.user_id },
+          include: [{ model: User, attributes: ['username'] }]
+      });
+
+      const tasksPlain = tasks.map(task => task.get({ plain: true }));
+
+      res.render('pending', {
+          tasks: tasksPlain,
+          logged_in: req.session.logged_in
+          
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).render('error', { error: err });
   }
 });
 
 
 // route for inprogress tasks
-router.get('/inprogress', async (req, res) => {
+router.get('/inprogress', withAuth, async (req, res) => {
   try {
-    // If the user is not logged in, redirect the user to the login page
-    if (!req.session.logged_in) {
-      return res.redirect('/login');
-    }
+      const tasks = await Task.findAll({
+          where: { user_id: req.session.user_id },
+          include: [{ model: User, attributes: ['username'] }]
+      });
 
-    // If the user is logged in, allow them to view tasks
-    const taskData = await Task.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['username'],
-        },
-      ],
-    });
+      const tasksPlain = tasks.map(task => task.get({ plain: true }));
 
-    const tasks = taskData.map(task => task.get({ plain: true }));
-
-    res.render('inprogress', { tasks, loggedIn: req.session.loggedIn });
+      res.render('inprogress', {
+          tasks: tasksPlain,
+          logged_in: req.session.logged_in
+      });
   } catch (err) {
-    console.error(err);
-    res.status(500).json(err);
+      console.error(err);
+      res.status(500).render('error', { error: err });
   }
 });
 
 
 // route for completed tasks
-router.get('/completed', async (req, res) => {
+router.get('/completed', withAuth, async (req, res) => {
   try {
-    // If the user is not logged in, redirect the user to the login page
-    if (!req.session.logged_in) {
-      return res.redirect('/login');
-    }
+      const tasks = await Task.findAll({
+          where: { user_id: req.session.user_id },
+          include: [{ model: User, attributes: ['username'] }]
+      });
 
-    // If the user is logged in, allow them to view tasks
-    const taskData = await Task.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['username'],
-        },
-      ],
-    });
+      const tasksPlain = tasks.map(task => task.get({ plain: true }));
 
-    const tasks = taskData.map(task => task.get({ plain: true }));
-
-    res.render('completed', { tasks, loggedIn: req.session.loggedIn });
+      res.render('completed', {
+          tasks: tasksPlain,
+          logged_in: req.session.logged_in
+      });
   } catch (err) {
-    console.error(err);
-    res.status(500).json(err);
+      console.error(err);
+      res.status(500).render('error', { error: err });
   }
 });
 
@@ -122,6 +110,7 @@ router.get('/', withAuth, async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
+    console.log(user)
 
     res.render('homepage', {
       ...user,
@@ -133,7 +122,7 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
- 
+
   if (req.session.logged_in) {
     res.redirect('/login');
     return;
@@ -143,7 +132,7 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/register', (req, res) => {
-  
+
   if (req.session.logged_in) {
     res.redirect('/');
     return;

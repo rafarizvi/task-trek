@@ -2,13 +2,15 @@ const router = require("express").Router();
 const { Task, User } = require("../../models");
 
 const withAuth = require("../../utils/auth");
-const { appendTaskToFile } = require("../../utils/helpers");
 
 router.get('/', withAuth, async (req, res) => {
     try {
         const tasks = await Task.findAll({
             where: { user_id: req.session.user_id },
-            include: [{ model: User, attributes: ['username'] }]
+            include: [{
+                model: User,
+                attributes: ['username', 'email']
+            }]
         });
 
         const tasksPlain = tasks.map(task => task.get({ plain: true }));
@@ -16,6 +18,9 @@ router.get('/', withAuth, async (req, res) => {
         res.render('tasks', {
             tasks: tasksPlain,
             logged_in: req.session.logged_in
+            
+            //...tasksPlain,
+            //logged_in: true
         });
     } catch (err) {
         console.error(err);
@@ -36,31 +41,8 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
-// router.get('/:id', withAuth, async (req, res) => {
-//     try {
-//         const task = await Task.findByPk(req.params.id, {
-//             include: [{ model: User, attributes: ['username'] }]
-//         });
-
-//         if (!task) {
-//             res.status(404).render('error', { error: "Task not found" });
-//             return;
-//         }
-
-//         const taskPlain = task.get({ plain: true });
-
-//         res.render('task', {
-//             task: taskPlain,
-//             logged_in: req.session.logged_in
-//         });
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).render('error', { error: err }); // 
-//     }
-// });
 
 
-// UPDATE a task
 router.put('/:id', withAuth, async (req, res) => {
     try {
         const task = await Task.findByPk(req.params.id);
@@ -70,10 +52,6 @@ router.put('/:id', withAuth, async (req, res) => {
             return;
         }
 
-        if (task.user_id !== req.session.user_id) {
-            res.status(403).json({ message: 'You do not have permission to update this task' });
-            return;
-        }
 
         await task.update(req.body);
         const updatedTask = await task.get({ plain: true });
@@ -84,7 +62,6 @@ router.put('/:id', withAuth, async (req, res) => {
     }
 });
 
-// DELETE a task
 router.delete("/:id", withAuth, async (req, res) => {
     try {
         const taskData = await Task.destroy({

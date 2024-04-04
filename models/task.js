@@ -9,7 +9,7 @@ Task.init(
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true,
+            autoIncrement: true
         },
 
         title: {
@@ -46,7 +46,7 @@ Task.init(
             type: DataTypes.STRING,
             defaultValue: 'pending',
             validate: {
-                isIn: [["pending", "completed", "inProgress"]]
+                isIn: [["pending", "completed", "in progress"]]
             }
         },
         user_id: {

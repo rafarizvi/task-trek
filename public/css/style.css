@@ -1,3 +1,44 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css";
+
+body {
+    background-color: #000000;
+    padding-top: 2rem;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.box {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.box h2.title {
+    margin-bottom: 1rem;
+}
+
+.update-status {
+    margin-top: 1rem;
+}
+
+.update-status select {
+    width: 150px;
+}
+
+.update-status-button {
+    margin-top: 0.5rem;
+}
+
+.delete-task {
+    margin-top: 0.5rem;
+}
+
+
 /* Home and login page */
 #my-task {
     font-family: Helvetica, Arial, sans-serif;
@@ -11,7 +52,7 @@
     justify-content: center;
     margin: 30px;
     font-size: xx-large;
-    color:rgb(0, 153, 255);
+    color: rgb(0, 153, 255);
     font-weight: bold;
 }
 
@@ -25,8 +66,9 @@
     text-align: center;
 }
 
-.taskbtn a, .taskbtn2 a {
-    color:rgb(255, 255, 255);
+.taskbtn a,
+.taskbtn2 a {
+    color: rgb(255, 255, 255);
 }
 
 .loginForm {
@@ -65,18 +107,18 @@ h4 {
         margin-left: auto;
         margin-right: auto;
     }
-
+    
     .taskbtn2 {
         width: 20rem;
         height: 4rem;
         margin-left: 0;
     }
-
+    
 }
 
 /* Task pages */
 
-.task-status {
+.task-type {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 34px;
     font-weight: bold;
@@ -85,13 +127,211 @@ h4 {
 }
 
 .completed-table {
-    background-color: rgb(239, 255, 252);
+    background-color: rgb(0, 0, 0);
 }
 
 .inprogress-table {
-    background-color: rgb(255, 251, 239);
+    background-color: rgb(55, 55, 54);;
 }
 
 .pending-table {
-    background-color: rgb(239, 248, 255);
+    background-color: rgb(120, 121, 121);
 }
+
+.homeBtns {
+    padding-bottom: 1.5%;
+}
+
+.date {
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.date p {
+    font-weight: bold;
+}
+
+.display-card {
+
+}
+
+
+.field.is-grouped {
+    display: flex;
+    gap: 1.75rem;
+    justify-content: center;
+}
+
+
+.rainbow-effect {
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+
+    transition: background-color 0.5s ease;
+  }
+  
+  .rainbow-effect:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .rainbow-effect .icon {
+    color: black; /* Initial color for the icon */
+  }
+  
+  .rainbow-effect:hover .icon {
+    color: green; /* Icon color on hover */
+  }
+  
+  /* Additional styling for the container to center the button, if needed */
+  .cntr.homeBtns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+  .title:not(.is-spaced):has(+.subtitle) {
+    margin-bottom: 43px;
+}
+
+
+.ibm-plex sans-light {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  
+  @media screen and (min-width: 769px), print {
+    .column.is-4, .column.is-8-tablet {
+        flex: none;
+        width: 33.33333%;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    #navbarMain .navbar-menu {
+      width: 100%;
+      justify-content: center;
+    }
+    #navbarMain .navbar-end {
+      justify-content: center;
+      width: 100%;
+    }
+    #navbarMain .navbar-item {
+      justify-content: center;
+    }
+  }
+
+
+  body {
+    background-color: black;
+
+  }
+  
+  .glow {
+    font-size: 80px;
+    color: #fff;
+    text-align: center;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+  
+  
+/* Vendor-prefixed for WebKit browsers like Chrome and Safari */
+@-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e5d7de, 0 0 40px #fdf6f9, 0 0 50px #f9f6f8, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+    
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #eee6ea, 0 0 40px #dfd6db, 0 0 50px #d2d1d1, 0 0 60px #e7dce1, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+  }
+  
+  /* Standard rule for all browsers */
+  @keyframes glow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e5d7de, 0 0 40px #fdf6f9, 0 0 50px #f9f6f8, 0 0 60px #e60073, 0 0 70px #e60073;
+      }
+      
+      to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #eee6ea, 0 0 40px #dfd6db, 0 0 50px #d2d1d1, 0 0 60px #e7dce1, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+      }
+  }
+  
+
+  
+  .welcome-message {
+    font-family: 'Arial', sans-serif; /* Use a web-safe font or import a Google Font for more options */
+    font-size: 24px; /* Adjust size as needed */
+    color: #2C3E50; /* A sophisticated font color */
+    text-align: center; /* Center the text */
+    margin: 20px 0; /* Add some space around the message */
+    padding: 10px;
+    background-color: #747e81; /* A subtle background color */
+    border-radius: 5px; /* Rounded corners for a softer look */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* A light shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.note-icon {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 28px; /* Slightly larger to emphasize the icon */
+    animation: bounce 1s infinite alternate; /* Add a bouncing animation */
+}
+
+.welcome-message:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    cursor: pointer; /* Change cursor to indicate interactivity */
+}
+
+/* Keyframes for the bouncing animation */
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+
+.box {
+    background-color: #44525000;
+    border-radius: 5px;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+
+.table tr.is-info {
+    --bulma-table-color: hsla(132, 3%, 34%, 0.254);
+    --bulma-table-cell-heading-color: #485fc7;;
+    --bulma-table-cell-background-color: #485fc7;;
+
+}
+
+
+.pending-table {
+    background-color: rgb(55, 55, 54);
+    font-family:sans-serif
+}
+
+
+.table tr.is-success {
+    --bulma-table-color: hsla(0, 0%, 0%, 0.254);
+    --bulma-table-cell-heading-color: green;
+    --bulma-table-cell-background-color: green;
+}
+
+
+.table tbody {
+    background-color: rgb(55, 55, 54);;
+    font-family:sans-serif
+}
+

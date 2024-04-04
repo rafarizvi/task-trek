@@ -1,13 +1,32 @@
 {{#if logged_in}}
 
 <div class="container-1">
-<h1 id="my-task">My Tasks</h1> 
+<h1 class="glow" id="my-task">My Tasks</h1>
+
 </div> 
 
 
+<style>
+  #btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cntr,
+  .cntr2 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px; /* Adjust as needed */
+  }
+</style>
+
 <div id="btns">
-  <div class="cntr">
-    <a href="/add-task"><button class="button is-link is-large is-rounded taskbtn2" type="button" data-bs-dismiss="modal">Add new task</button></a>
+  <div class="cntr homeBtns">
+    <a href="/api/tasks"><button class="button is-link is-large is-rounded taskbtn2" type="button" data-bs-dismiss="modal">Add new task</button></a>
+  </div>
+  <div class="cntr homeBtns">
+    <a href="/all"><button class="button is-link is-large is-rounded taskbtn2" type="button" data-bs-dismiss="modal">All tasks</button></a>
   </div>
   <div class="cntr2">
     <a href="/pending"><button class="button is-info is-large is-rounded taskbtn" type="button" data-bs-dismiss="modal">Pending</button></a>

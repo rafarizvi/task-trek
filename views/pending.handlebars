@@ -1,6 +1,7 @@
-<h1 class="task-status">Pending Tasks</h1>
+{{#if logged_in}}
+<h1 class="task-type">Pending Tasks</h1>
 <div class="card task-card">
-<table class="table is-bordered is-striped is-hoverable is-fullwidth pending-table">
+<table class="table is-bordered is-striped is-hoverable is-fullwidth">
     <thead>
         <tr class="is-info">
             <th>Id</th>
@@ -17,7 +18,7 @@
     {{#ifEquals status "pending"}}
 
     <tbody>
-        <tr class="taskList">
+        <tr class="taskList pending-table style=background-color: #67c598;">
             <th>{{id}}</th>
             <td>{{title}}</td>
             <td>{{description}}</td>
@@ -36,5 +37,8 @@
 
 </table>
 
-<script src="/js/tasks.js"></script>
+{{else}}
+<h1>Please log in to view your tasks.</h1>
+{{/if}}
+<script src="/js/remove-tasks.js"></script>
 </div>

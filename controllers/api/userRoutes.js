@@ -3,26 +3,25 @@ const express = require('express');
 const router = require('express').Router();
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oidc');
-// const registerRoute = require('./registerRoute');
-
-
-// router.post('/register', registerRoute.registerUser);
+const registerRoute = require('./registerRoute');
+const db = require('../../config/connection')
+router.post('/register', registerRoute.registerUser);
 
 passport.use(new GoogleStrategy({
   clientID: process.env['GOOGLE_CLIENT_ID'],
   clientSecret: process.env['GOOGLE_CLIENT_SECRET'],
   callbackURL: '/oauth2/redirect/google',
-  scope: [ 'profile' ]
+  scope: ['profile']
 }, function verify(issuer, profile, cb) {
   db.get('SELECT * FROM federated_credentials WHERE provider = ? AND subject = ?', [
     issuer,
     profile.id
-  ], function(err, row) {
+  ], function (err, row) {
     if (err) { return cb(err); }
     if (!row) {
       db.run('INSERT INTO users (name) VALUES (?)', [
         profile.displayName
-      ], function(err) {
+      ], function (err) {
         if (err) { return cb(err); }
 
         var id = this.lastID;
@@ -30,7 +29,7 @@ passport.use(new GoogleStrategy({
           id,
           issuer,
           profile.id
-        ], function(err) {
+        ], function (err) {
           if (err) { return cb(err); }
           var user = {
             id: id,
@@ -40,7 +39,7 @@ passport.use(new GoogleStrategy({
         });
       });
     } else {
-      db.get('SELECT * FROM users WHERE id = ?', [ row.user_id ], function(err, row) {
+      db.get('SELECT * FROM users WHERE id = ?', [row.user_id], function (err, row) {
         if (err) { return cb(err); }
         if (!row) { return cb(null, false); }
         return cb(null, row);
@@ -49,14 +48,14 @@ passport.use(new GoogleStrategy({
   });
 }));
 
-passport.serializeUser(function(user, cb) {
-  process.nextTick(function() {
+passport.serializeUser(function (user, cb) {
+  process.nextTick(function () {
     cb(null, { id: user.id, username: user.username, name: user.name });
   });
 });
 
-passport.deserializeUser(function(user, cb) {
-  process.nextTick(function() {
+passport.deserializeUser(function (user, cb) {
+  process.nextTick(function () {
     return cb(null, user);
   });
 });
@@ -74,13 +73,15 @@ router.get('/oauth2/redirect/google', passport.authenticate('google', {
 }));
 
 
-router.post('/register', async (req, res) => {
+
+
+router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
-    req.session.user_id = userData.id;
-    req.session.logged_in = true;
     req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
       res.redirect('/');
     });
   } catch (err) {
@@ -90,31 +91,31 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    console.log(req.body)
+    console.log(req.body);
     const userData = await User.findOne({ where: { email: req.body.email } });
 
-    if (!userData || !(await userData.checkPassword(req.body.password)
-    )) {
-      return res.status(400).json({ message: 'Incorrect email or password, please try again' });
+    if (!userData || !(await userData.checkPassword(req.body.password))) {
+      return res.status(401).render('error401', {
+        message: 'Incorrect email or password, please try again'
+      });
     }
 
-    req.session.user_id = userData.id;
-    req.session.logged_in = true;
     req.session.save(() => {
-      res.redirect('/');   
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+      res.redirect('/');
     });
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-
 router.post('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       return res.status(500).json({ message: 'Failed to log out' });
     }
-    res.clearCookie('connect.sid'); 
+    res.clearCookie('connect.sid');
     res.status(204).json({ message: 'Logged out successfully' });
   });
 });
@@ -123,3 +124,4 @@ router.post('/logout', (req, res) => {
 
 
 module.exports = router;
+

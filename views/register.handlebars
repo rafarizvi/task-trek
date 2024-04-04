@@ -1,21 +1,54 @@
-<h4 class="cntr">Sign Up</h4>
-
-<div class="card container mt-4" style="width: 22rem;">
-
-    <form class="loginForm" action="/api/users/login" method="POST">
-        <div class="mb-3">
-            <input type="text" placeholder="Username" class="form-control input is-medium is-focused loginBtns"
-                id="username-reg" name="username">
-
-            <input type="text" placeholder="Email" class="form-control input is-medium is-focused loginBtns"
-                id="email-reg" name="email">
-
-            <input type="password" placeholder="Password" class="form-control input is-medium is-focused loginBtns"
-                id="password-reg" name="password">
-
-            <button type="submit" class="button is-success submit-btn loginBtns">Sign Up</button>
+<nav>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-4">
+                    <div class="card" style="background-color: #9997a2;" >
+                        <header class="card-header">
+                            <p class="card-header-title has-text-centered">
+                                Register
+                            </p>
+                        </header>
+                        <div class="card-content">
+                            <div class="content">
+                                <div class="has-text-centered">
+                                    <form action="/api/users/register" method="POST">
+                                        <div class="field">
+                                            <label class="label" for="username-reg">Username</label>
+                                            <div class="control">
+                                                <input class="input" type="text" id="username-reg" name="username" required>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <label class="label" for="email-reg">Email</label>
+                                            <div class="control">
+                                                <input class="input" type="email" id="email-reg" name="email" required>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <label class="label" for="password-reg">Password</label>
+                                            <div class="control">
+                                                <input class="input" type="password" id="password-reg" name="password" required>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="control">
+                                                <button class="button is-primary is-rounded" type="submit">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div>
+                                    
+                                    </div>
+                                    <p style="color: white;">Or sign in using:</p>
+                                    <button class="button is-info is-rounded rainbow-effect ">Google</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </form>
-</div>
-
+    </section>
+</nav>
 <script src="../public/js/register.js"></script>
