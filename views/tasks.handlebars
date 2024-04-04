@@ -14,12 +14,12 @@
         <div class="field">
           <label class="label">Description</label>
           <div class="control">
-            <textarea class="textarea" name="description" placeholder="Enter task description" required></textarea>
+            <textarea maxlength="255" class="textarea" name="description" placeholder="Enter task description (max length: 255 characters)" required></textarea>
           </div>
         </div>
         <div class="date">
-          <p>Start date: <input type="text" class="datepicker" id="start-date"></p>
-          <p>Due date: <input type="text" class="datepicker" id="due-date"></p>
+          <p>Start date: <input type="text" class="datepicker" id="start-date" required></p>
+          <p>Due date: <input type="text" class="datepicker" id="due-date" required></p>
         </div>
         <div class="field is-grouped">
           <div class="control">
