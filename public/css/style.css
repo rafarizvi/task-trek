@@ -329,3 +329,15 @@ html, body {
     flex: 1;
   }
   
+  .button.is-info {
+    background-color: rgba(146, 206, 255, 0); /* Adjust the alpha value as needed */
+    border-color: transparent;
+    color: #fff;
+}
+
+.button.is-info.is-hovered, .button.is-info:hover {
+    background-color: hsl(208, 8%, 64%); 
+    border-color: transparent;
+    color: #fae6e6;
+    
+}
