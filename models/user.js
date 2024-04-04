@@ -33,9 +33,9 @@ User.init(
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: false, // Updated to disallow null values
+            allowNull: false, 
             validate: {
-                len: [8], // Added length validation
+                len: [8],
             },
         },
     },
