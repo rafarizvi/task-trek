@@ -107,6 +107,10 @@ app.use((err, req, res, next) => {
     }
 });
 
+app.get('/api/google-client-id', (req, res) => {
+    res.json({ clientId: process.env.GOOGLE_CLIENT_ID });
+  });
+
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log('🔥🔥🔥!(ON)'));
 });
