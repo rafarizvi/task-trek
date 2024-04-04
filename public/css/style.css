@@ -277,14 +277,14 @@ h4 {
 
 .table tr.is-info {
     --bulma-table-color: hsla(132, 3%, 34%, 0.254);
-    --bulma-table-cell-heading-color: #485fc7;;
-    --bulma-table-cell-background-color: #485fc7;;
+    --bulma-table-cell-heading-color: #485fc7;
+    --bulma-table-cell-background-color: #485fc7;
 
 }
 
 
 .pending-table {
-    background-color: rgb(55, 55, 54);
+    background-color: #485fc7;
     font-family:sans-serif
 }
 
@@ -330,9 +330,8 @@ html, body {
   }
   
   .button.is-info {
-    background-color: transparent;
-
-    border-color: transparent;
+    background-color: #485fc7;
+    border-color: #485fc7;
     color: #fff;
 }
 
