@@ -22,39 +22,40 @@
   <section class="hero is-dark is-bold">
     <div class="hero-body">
       <div class="container">
+  
+<nav class="navbar">
+  <div class="navbar-brand">
+    <h1 class="navbar-item">
+      <a href="/" class="title has-text-light">Task Manager</a>
+    </h1>
+    <span class="navbar-burger burger has-text-light" id="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </div>
+  <div class="navbar-end">
+    {{#if logged_in}}
+    <div class="navbar-item">
+      <div class="buttons">
+        <button id="logout" class="button is-light is-rounded">Logout</button>
+      </div>
+    </div>
+    <div class="navbar-item">
+      <p class="has-text-light">{{username}}</p>
+    </div>
+    {{else}}
+    <div class="navbar-item">
+      <button id="dark-mode-toggle" class="button is-light is-rounded">Dark Mode</button>
+    </div>
+    {{/if}}
+  </div>
+</nav>
+</nav>
 
-        <nav class="navbar">
-          <div class="navbar-brand">
-            <h1 class="navbar-item">
-              <a href="/" class="title has-text-light">Task Manager</a>
-            </h1>
-            <span class="navbar-burger burger has-text-light" id="nav-toggle">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
           </div>
-          <div class="navbar-end">
-            {{#if logged_in}}
-            <div class="navbar-item">
-              <div class="buttons">
-                <button id="logout" class="button is-light is-rounded">Logout</button>
-              </div>
-            </div>
-            <div class="navbar-item">
-              <p class="has-text-light">{{email}}</p>
-            </div>
-            {{else}}
-            <div class="navbar-item">
-              <button id="dark-mode-toggle" class="button is-light is-rounded">Dark Mode</button>
-            </div>
-            {{/if}}
-          </div>
-        </nav>
         </nav>
       </div>
-      </nav>
-    </div>
     </div>
   </section>
 
@@ -79,6 +80,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
   <script src="/js/logout.js"></script>
   <script src="/js/tasks.js"></script>
+  <script src="../../public/css/style.css"></script>
 
 </body>
 
