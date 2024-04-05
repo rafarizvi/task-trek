@@ -107,13 +107,13 @@ h4 {
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     .taskbtn2 {
         width: 20rem;
         height: 4rem;
         margin-left: 0;
     }
-    
+
 }
 
 /* Task pages */
@@ -131,7 +131,8 @@ h4 {
 }
 
 .inprogress-table {
-    background-color: rgb(55, 55, 54);;
+    background-color: rgb(55, 55, 54);
+    ;
 }
 
 .pending-table {
@@ -168,11 +169,14 @@ h4 {
     font-family: "IBM Plex Sans", sans-serif;
     font-weight: 300;
     font-style: normal;
-  }
+}
 
-  
-  @media screen and (min-width: 769px), print {
-    .column.is-4, .column.is-8-tablet {
+
+@media screen and (min-width: 769px),
+print {
+
+    .column.is-4,
+    .column.is-8-tablet {
         flex: none;
         width: 33.33333%;
     }
@@ -181,78 +185,93 @@ h4 {
 
 @media screen and (max-width: 768px) {
     #navbarMain .navbar-menu {
-      width: 100%;
-      justify-content: center;
+        width: 100%;
+        justify-content: center;
     }
+
     #navbarMain .navbar-end {
-      justify-content: center;
-      width: 100%;
+        justify-content: center;
+        width: 100%;
     }
+
     #navbarMain .navbar-item {
-      justify-content: center;
+        justify-content: center;
     }
-  }
+}
 
 
-  body {
+body {
     background-color: black;
 
-  }
-  
-  .glow {
+}
+
+.glow {
     font-size: 80px;
     color: #fff;
     text-align: center;
     animation: glow 1s ease-in-out infinite alternate;
-  }
-  
-  
+}
+
+
 /* Vendor-prefixed for WebKit browsers like Chrome and Safari */
 @-webkit-keyframes glow {
     from {
-      text-shadow: 0 0 8px #ddd, 0 0 12px #ccc, 0 0 16px #bbb, 0 0 20px #aaa, 0 0 24px #999, 0 0 28px #888, 0 0 32px #777;
+        text-shadow: 0 0 8px #ddd, 0 0 12px #ccc, 0 0 16px #bbb, 0 0 20px #aaa, 0 0 24px #999, 0 0 28px #888, 0 0 32px #777;
     }
-    
-    to {
-      text-shadow: 0 0 10px #ccc, 0 0 15px #bbb, 0 0 20px #aaa, 0 0 25px #999, 0 0 30px #888, 0 0 35px #777, 0 0 40px #666;
-    }
-  }
-  
-  @keyframes glow {
-    from {
-      text-shadow: 0 0 8px #ddd, 0 0 12px #ccc, 0 0 16px #bbb, 0 0 20px #aaa, 0 0 24px #999, 0 0 28px #888, 0 0 32px #777;
-    }
-    
-    to {
-      text-shadow: 0 0 10px #ccc, 0 0 15px #bbb, 0 0 20px #aaa, 0 0 25px #999, 0 0 30px #888, 0 0 35px #777, 0 0 40px #666;
-    }
-  }
-  
 
-  
-  .welcome-message {
-    font-family: 'Arial', sans-serif; /* Use a web-safe font or import a Google Font for more options */
-    font-size: 24px; /* Adjust size as needed */
-    color: #2C3E50; /* A sophisticated font color */
-    text-align: center; /* Center the text */
-    margin: 20px 0; /* Add some space around the message */
+    to {
+        text-shadow: 0 0 10px #ccc, 0 0 15px #bbb, 0 0 20px #aaa, 0 0 25px #999, 0 0 30px #888, 0 0 35px #777, 0 0 40px #666;
+    }
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 8px #ddd, 0 0 12px #ccc, 0 0 16px #bbb, 0 0 20px #aaa, 0 0 24px #999, 0 0 28px #888, 0 0 32px #777;
+    }
+
+    to {
+        text-shadow: 0 0 10px #ccc, 0 0 15px #bbb, 0 0 20px #aaa, 0 0 25px #999, 0 0 30px #888, 0 0 35px #777, 0 0 40px #666;
+    }
+}
+
+
+
+.welcome-message {
+    font-family: 'Arial', sans-serif;
+    /* Use a web-safe font or import a Google Font for more options */
+    font-size: 24px;
+    /* Adjust size as needed */
+    color: #2C3E50;
+    /* A sophisticated font color */
+    text-align: center;
+    /* Center the text */
+    margin: 20px 0;
+    /* Add some space around the message */
     padding: 10px;
-    background-color: #747e81; /* A subtle background color */
-    border-radius: 5px; /* Rounded corners for a softer look */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* A light shadow for depth */
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    background-color: #747e81;
+    /* A subtle background color */
+    border-radius: 5px;
+    /* Rounded corners for a softer look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* A light shadow for depth */
+    transition: all 0.3s ease;
+    /* Smooth transition for hover effects */
 }
 
 .note-icon {
     display: inline-block;
     margin-left: 10px;
-    font-size: 28px; /* Slightly larger to emphasize the icon */
-    animation: bounce 1s infinite alternate; /* Add a bouncing animation */
+    font-size: 28px;
+    /* Slightly larger to emphasize the icon */
+    animation: bounce 1s infinite alternate;
+    /* Add a bouncing animation */
 }
 
 .welcome-message:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
-    cursor: pointer; /* Change cursor to indicate interactivity */
+    transform: scale(1.05);
+    /* Slightly enlarge on hover */
+    cursor: pointer;
+    /* Change cursor to indicate interactivity */
 }
 
 /* Keyframes for the bouncing animation */
@@ -260,6 +279,7 @@ h4 {
     from {
         transform: translateY(0);
     }
+
     to {
         transform: translateY(-10px);
     }
@@ -285,7 +305,7 @@ h4 {
 
 .pending-table {
     background-color: #485fc7;
-    font-family:sans-serif
+    font-family: sans-serif
 }
 
 
@@ -297,8 +317,9 @@ h4 {
 
 
 .table tbody {
-    background-color: rgb(55, 55, 54);;
-    font-family:sans-serif
+    background-color: rgb(55, 55, 54);
+    ;
+    font-family: sans-serif
 }
 
 .welcome-message-enhanced {
@@ -307,7 +328,7 @@ h4 {
     padding: 0.5em;
     border-radius: 0.5em;
     background-color: rgba(0, 0, 0, 0.2);
-  }
+}
 
 
 
@@ -318,30 +339,32 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-  }
+}
 
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
-  }
+}
 
-  main {
+main {
     flex: 1;
-  }
-  
-  .button.is-info {
+}
+
+.button.is-info {
     background-color: transparent;
     border-color: transparent;
     color: #fff;
 }
 
-.button.is-info.is-hovered, .button.is-info:hover {
+.button.is-info.is-hovered,
+.button.is-info:hover {
     .button.is-info {
-    background-color: transparent;
-    border-color: transparent   ;
-    color: transparent;
-}
-    
+        background-color: transparent;
+        border-color: transparent;
+        color: transparent;
+    }
+
 
     .title-spacing {
         margin-bottom: 20px;
@@ -351,6 +374,7 @@ html, body {
 .title:not(.is-spaced):has(+.subtitle) {
     margin-bottom: 42px;
 }
+
 .table thead {
     background-color: green;
 }

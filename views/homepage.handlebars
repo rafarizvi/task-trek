@@ -1,9 +1,9 @@
 {{#if logged_in}}
 
 <div class="container-1">
-<h1 class="glow" id="my-task">My Tasks</h1>
+  <h1 class="glow" id="my-task">My Tasks</h1>
 
-</div> 
+</div>
 
 
 <style>
@@ -17,25 +17,30 @@
   .cntr2 {
     display: flex;
     justify-content: center;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
   }
 </style>
 
 <div id="btns">
   <div class="cntr homeBtns">
-    <a href="/api/tasks"><button class="button is-link is-large is-rounded taskbtn2" type="button" data-bs-dismiss="modal">Add new task</button></a>
+    <a href="/api/tasks"><button class="button is-link is-large is-rounded taskbtn2" type="button"
+        data-bs-dismiss="modal">Add new task</button></a>
   </div>
   <div class="cntr homeBtns">
-    <a href="/all"><button class="button is-link is-large is-rounded taskbtn2" type="button" data-bs-dismiss="modal">All tasks</button></a>
+    <a href="/all"><button class="button is-link is-large is-rounded taskbtn2" type="button" data-bs-dismiss="modal">All
+        tasks</button></a>
   </div>
   <div class="cntr2">
-    <a href="/pending"><button class="button is-info is-large is-rounded taskbtn" type="button" data-bs-dismiss="modal">Pending</button></a>
-    <a href="/inprogress"><button class="button is-warning is-large is-rounded taskbtn" type="button" data-bs-dismiss="modal">In-progress</button></a>
-    <a href="/completed"><button class="button is-success is-large is-rounded taskbtn" type="button" data-bs-dismiss="modal">Completed</button></a>
+    <a href="/pending"><button class="button is-light is-large is-rounded taskbtn" type="button"
+        data-bs-dismiss="modal">Pending</button></a>
+    <a href="/inprogress"><button class="button is-warning is-large is-rounded taskbtn" type="button"
+        data-bs-dismiss="modal">In-progress</button></a>
+    <a href="/completed"><button class="button is-success is-large is-rounded taskbtn" type="button"
+        data-bs-dismiss="modal">Completed</button></a>
   </div>
 </div>
 
- 
+
 {{else}}
 <h1>Please log in to view your tasks.</h1>
 {{/if}}
