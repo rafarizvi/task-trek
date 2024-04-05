@@ -14,15 +14,13 @@ const fs = require('fs').promises;
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 const hbs = exphbs.create({ helpers });
 
 const sess = {
-    secret: 'Super secret secret',
+    secret: process.env.SECRET,
     cookie: {
         maxAge: 600000,  
         httpOnly: true,
@@ -58,13 +56,6 @@ app.use(passport.session());
 
 app.use('/', authRouter);
 app.use(routes);
-
-
-
-
-
-
-
 
 app.use((_req, res, next) => {
     const err = new Error('Not Found');
